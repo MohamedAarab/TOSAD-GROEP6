@@ -7,6 +7,7 @@ import domain.targetDatabase.Attribute;
  */
 public class TupleCompareRule extends BusinessRule {
     private Attribute secondAttribute;
+    private int test = 1;
 
     @Override
     public void setValue(Object value) {
