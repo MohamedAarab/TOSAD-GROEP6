@@ -1,4 +1,4 @@
-package businessrules.DAO;
+package businessrules;
 
 import domain.targetDatabase.Attribute;
 

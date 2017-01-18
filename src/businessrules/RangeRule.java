@@ -1,5 +1,6 @@
-package businessrules.DAO;
+package businessrules;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**

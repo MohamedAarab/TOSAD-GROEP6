@@ -1,6 +1,8 @@
-import businessrules.DAO.AttributeCompareRule;
-import businessrules.DAO.ListRule;
-import businessrules.DAO.RangeRule;
+package main;
+
+import businessrules.AttributeCompareRule;
+import businessrules.ListRule;
+import businessrules.RangeRule;
 import businessrules.test.Definition;
 import businessrules.test.TestBusinessRule;
 
@@ -21,9 +23,9 @@ public class Main {
         rangeRule.setValue(map);
         AttributeCompareRule attributeCompareRule = new AttributeCompareRule();
         attributeCompareRule.setValue(1.01);
-        List<Definition> rangeRuleDefinitions = new ArrayList<Definition>();
-        rangeRuleDefinitions.add(new Definition("minimum"));
-        rangeRuleDefinitions.add(new Definition("maximum"));
-        TestBusinessRule testBusinessRule = new TestBusinessRule(rangeRuleDefinitions);
+        List<domain.businessRule.Definition> rangeRuleDefinitions = new ArrayList<domain.businessRule.Definition>();
+//        rangeRuleDefinitions.add(new domain.businessRule.Definition("minimum"));
+//        rangeRuleDefinitions.add(new domain.businessRule.Definition("maximum"));
+//        TestBusinessRule testBusinessRule = new TestBusinessRule(rangeRuleDefinitions);
     }
 }
