@@ -1,7 +1,5 @@
 package domain.businessRule;
 
-/**
- * Created by Unknown on 01/18/2017.
- */
 public class Definition {
+    public int test = 1;
 }
