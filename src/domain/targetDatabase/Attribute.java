@@ -1,4 +1,4 @@
-package domain;
+package domain.targetDatabase;
 
 /**
  * Created by lucas on 13-1-2017.

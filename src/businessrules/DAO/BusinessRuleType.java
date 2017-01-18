@@ -1,6 +1,6 @@
-package businessrules;
+package businessrules.DAO;
 
-import domain.Operator;
+import domain.businessRuleType.Operator;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package businessrules;
+package businessrules.DAO;
 
 import java.util.List;
 

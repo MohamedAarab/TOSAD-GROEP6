@@ -1,6 +1,6 @@
-import businessrules.AttributeCompareRule;
-import businessrules.ListRule;
-import businessrules.RangeRule;
+import businessrules.DAO.AttributeCompareRule;
+import businessrules.DAO.ListRule;
+import businessrules.DAO.RangeRule;
 import businessrules.test.Definition;
 import businessrules.test.TestBusinessRule;
 

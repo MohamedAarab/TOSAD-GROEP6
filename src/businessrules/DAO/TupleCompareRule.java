@@ -1,6 +1,6 @@
-package businessrules;
+package businessrules.DAO;
 
-import domain.Attribute;
+import domain.targetDatabase.Attribute;
 
 /**
  * Created by lucas on 13-1-2017.

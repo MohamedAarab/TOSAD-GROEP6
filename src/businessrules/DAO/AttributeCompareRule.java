@@ -1,4 +1,4 @@
-package businessrules;
+package businessrules.DAO;
 
 /**
  * Created by lucas on 13-1-2017.
