@@ -19,7 +19,8 @@ public class ToolConnection {
         this.toolUrl = toolUrl;
         try {
             InitialContext ic = new InitialContext();
-            connection = DriverManager.getConnection(this.toolUrl , this.toolUsername, this.toolPassword);
+            connection = DriverManager.getConnection("jdbc:default:connection:");
+
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }

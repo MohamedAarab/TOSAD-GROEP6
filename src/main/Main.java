@@ -28,7 +28,6 @@ public class Main {
 ////        rangeRuleDefinitions.add(new domain.businessRule.Definition("minimum"));
 ////        rangeRuleDefinitions.add(new domain.businessRule.Definition("maximum"));
 ////        TestBusinessRule testBusinessRule = new TestBusinessRule(rangeRuleDefinitions);
-
         System.out.println(GenerateController.getAllCategories());
     }
 }
