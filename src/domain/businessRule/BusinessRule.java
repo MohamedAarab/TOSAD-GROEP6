@@ -59,6 +59,10 @@ public class BusinessRule {
         return firstAttribute;
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
     public void save(){
         // TODO: 13-1-2017
     }

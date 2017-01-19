@@ -35,8 +35,6 @@ public abstract class BusinessRuleType {
         this.operators = operators;
     }
 
-    public abstract void generate(List<Definition> definitions);
-
     public abstract void validate(List<Definition> definitions);
 
     protected void addTemplate(ITemplate template){

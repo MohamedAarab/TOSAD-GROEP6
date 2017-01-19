@@ -1,12 +1,8 @@
-package domain.businessRuleType.AttributeCompareRule;
+package domain.businessRuleType;
 
 import domain.businessRule.Definition;
-import domain.businessRuleType.BusinessRuleType;
-import domain.businessRuleType.ITemplate;
-import domain.businessRuleType.OracleTemplate;
 import org.antlr.stringtemplate.StringTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,10 +16,6 @@ public class AttributeCompareRule extends BusinessRuleType {
         template.getTemplate().setAttribute("operator", "");
         template.getTemplate().setAttribute("comparevalue", "");
         super.addTemplate(template);
-    }
-
-    @Override
-    public void generate(List<Definition> definitions) {
     }
 
     @Override

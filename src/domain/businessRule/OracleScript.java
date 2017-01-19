@@ -15,11 +15,13 @@ public class OracleScript extends Script {
                                                                  "$trigger_event$\n"+
                                                                  "   ON $table_name$\n"+
                                                                  "    FOR EACH ROW\n"+
-                                                                 "\n"+
                                                                  "DECLARE\n"+
                                                                  "   l_passed boolean := false;\n"+
                                                                  "BEGIN\n"+
                                                                  "   $trigger_code$\n"+
+                                                                 "   if l_passed = false then\n   "+
+                                                                 "      raise_application_error(-20000, \"$error_message$\");\n"+
+                                                                 "   end if;\n"+
                                                                  "EXCEPTION\n"+
                                                                  "   WHEN others\n"+
                                                                  "   -- exception handling\n"+
@@ -46,11 +48,11 @@ public class OracleScript extends Script {
         event = event.substring(0, event.length() - 3);
         triggerTemplate.setAttribute("trigger_event", event);
         triggerTemplate.setAttribute("table_name", "table_name");
-        //triggerTemplate.setAttribute("trigger_code", constraintTemplate);
+        triggerTemplate.setAttribute("error_message", businessRule.getErrorMessage());
         for(Definition definition : businessRule.getDefinitions()){
             constraintTemplate.setAttribute(definition.getName(), definition.getValue());
         }
-        constraintTemplate.setAttribute("operator", businessRule.getOperator().getName());
+        constraintTemplate.setAttribute("operator", businessRule.getOperator().getOperator());
         constraintTemplate.setAttribute("firstAttribute", businessRule.getFirstAttribute().getName());
         triggerTemplate.setAttribute("trigger_code", "l_passed := " + constraintTemplate.toString());
         System.out.println(triggerTemplate);
