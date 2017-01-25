@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class OracleScript extends Script {
     private StringTemplate triggerTemplate = new StringTemplate("CREATE OR REPLACE TRIGGER $trigger_name$\n"+
-                                                                 "$trigger_event$\n"+
+                                                                 "before $trigger_event$\n"+
                                                                  "   ON $table_name$\n"+
                                                                  "    FOR EACH ROW\n"+
                                                                  "DECLARE\n"+

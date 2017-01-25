@@ -27,31 +27,29 @@ public class ScriptResource {
     @GET
     @Produces("application/json")
     public String generateScript(){
-        JsonArrayBuilder jab = Json.createArrayBuilder();
+        JsonObjectBuilder job = Json.createObjectBuilder();
         BusinessRuleType ACMPtype = new AttributeCompareRule("ACMP", "Attribute Compare Rule", "HI");
         BusinessRuleType ARNGtype = new RangeRule("ARNG", "Attribute Range Rule", "");
 
         BusinessRule attributeCompareRule = new BusinessRule(ACMPtype);
-        attributeCompareRule.setName("attribute compare rule");
+        attributeCompareRule.setName("attribute_compare_rule");
         attributeCompareRule.setOperator(new Operator("GreaterThan", ">"));
         attributeCompareRule.addDefinition(new Definition("comparevalue", 10));
         attributeCompareRule.setFirstAttribute(new Attribute("attribute"));
         attributeCompareRule.setErrorMessage("error1");
         Script script = new OracleScript("testScript", Arrays.asList("update","insert"), attributeCompareRule);
         JsonObjectBuilder job1 = Json.createObjectBuilder();
-        job1.add(attributeCompareRule.getName(), script.generate());
+        job.add(attributeCompareRule.getName(), script.generate());
 
         BusinessRule rangeRule = new BusinessRule(ARNGtype);
-        rangeRule.setName("range rule");
+        rangeRule.setName("range_rule");
         rangeRule.setOperator(new Operator("between", "between"));
         rangeRule.addDefinition(new Definition("minimum", 10));
         rangeRule.addDefinition(new Definition("maximum", 20));
         rangeRule.setFirstAttribute(new Attribute("attribute"));
         Script script2 = new OracleScript("testScript",Arrays.asList("update","insert"), rangeRule);
         JsonObjectBuilder job2 = Json.createObjectBuilder();
-        job2.add(rangeRule.getName(), script2.generate());
-        jab.add(job1);
-        jab.add(job2);
-        return jab.build().toString();
+        job.add(rangeRule.getName(), script2.generate());
+        return job.build().toString();
     }
 }
