@@ -1,7 +1,5 @@
 package domain.businessRuleType;
 
-import domain.businessRule.Definition;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +32,6 @@ public abstract class BusinessRuleType {
     public void setOperators(List<Operator> operators){
         this.operators = operators;
     }
-
-    public abstract void validate(List<Definition> definitions);
 
     protected void addTemplate(ITemplate template){
         templates.add(template);

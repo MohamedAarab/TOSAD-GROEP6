@@ -9,18 +9,24 @@ import java.sql.DriverManager;
  * Created by Gebruiker on 18-1-2017.
  */
 public class BaseDAO {
+    private String targetUsername;
+    private String targetPassword;
+    private String targetUrl;
 
-    private Connection connection;
-
-    public BaseDAO() {
-        this.connection = null;
+    public BaseDAO(String targetUsername, String targetPassword, String targetUrl) {
+        this.targetUsername = targetUsername;
+        this.targetPassword = targetPassword;
+        this.targetUrl = targetUrl;
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public Connection getConnection() {
-        return connection;
+    protected final Connection getConnection() {
+        Connection result = null;
+        try {
+            InitialContext ic = new InitialContext();
+            result = DriverManager.getConnection(this.targetUrl , this.targetUsername, this.targetPassword);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        return result;
     }
 }

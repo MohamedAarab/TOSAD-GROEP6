@@ -17,7 +17,7 @@ public abstract class Script {
         this.businessRule = businessRule;
     }
 
-    public abstract String generate(); /*{
+    public abstract String generate(String tableName); /*{
         businessRule.getBusinessRuleType().generate(businessRule.getDefinitions(), businessRule.getOperator());
     }
 */

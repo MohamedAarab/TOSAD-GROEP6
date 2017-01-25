@@ -22,4 +22,19 @@ public class Scheme {
     public List<Table> getTables(){
         return tables;
     }
+
+    public Table getTableByName(String tableName){
+        Table table = null;
+        for(Table t : tables){
+            if(t.getName().equals(tableName)){
+                table = t;
+                break;
+            }
+        }
+        return table;
+    }
+
+    public void addTable(Table table){
+        tables.add(table);
+    }
 }

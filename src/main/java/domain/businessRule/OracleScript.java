@@ -32,7 +32,7 @@ public class OracleScript extends Script {
     }
 
     @Override
-    public String generate() {
+    public String generate(String tableName) {
         StringTemplate constraintTemplate = null;
         for(ITemplate t : businessRule.getBusinessRuleType().getTemplates()){
             if(t instanceof OracleTemplate){
@@ -47,7 +47,7 @@ public class OracleScript extends Script {
         }
         event = event.substring(0, event.length() - 3);
         triggerTemplate.setAttribute("trigger_event", event);
-        triggerTemplate.setAttribute("table_name", "table_name");
+        triggerTemplate.setAttribute("table_name", tableName);
         triggerTemplate.setAttribute("error_message", businessRule.getErrorMessage());
         for(Definition definition : businessRule.getDefinitions()){
             constraintTemplate.setAttribute(definition.getName(), definition.getValue());

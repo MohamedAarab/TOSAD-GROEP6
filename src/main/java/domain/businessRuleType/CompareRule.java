@@ -3,13 +3,15 @@ package domain.businessRuleType;
 import org.antlr.stringtemplate.StringTemplate;
 
 /**
- * Created by lucas on 19-1-2017.
+ * Created by lucas on 25-1-2017.
  */
-public class AttributeCompareRule extends BusinessRuleType {
-    public AttributeCompareRule(){
-        this("testcode", "Attribute Compare Rule", "");
+public class CompareRule extends BusinessRuleType {
+
+    public CompareRule(){
+        this("testcode", "Compare Rule", "");
     }
-    public AttributeCompareRule(String code, String name, String description) {
+
+    public CompareRule(String code, String name, String description) {
         super(code, name, description);
         OracleTemplate template = new OracleTemplate(new StringTemplate("$firstAttribute$ $operator$ $comparevalue$;"));
         template.getTemplate().setAttribute("firstAttribute", "");

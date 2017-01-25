@@ -1,9 +1,6 @@
 package domain.businessRuleType;
 
-import domain.businessRule.Definition;
 import org.antlr.stringtemplate.StringTemplate;
-
-import java.util.List;
 
 /**
  * Created by lucas on 19-1-2017.
@@ -20,8 +17,4 @@ public class RangeRule extends BusinessRuleType {
         super.addTemplate(template);
     }
 
-    @Override
-    public void validate(List<Definition> definitions) {
-
-    }
 }

@@ -19,8 +19,23 @@ public class Table {
         return attributes;
     }
 
+    public Attribute getAttributeByName(String name){
+        Attribute attribute = null;
+        for(Attribute a : attributes){
+            if(a.getName().equals(name)){
+                attribute = a;
+                break;
+            }
+        }
+        return attribute;
+    }
+
     public String getName(){
         return name;
+    }
+
+    public void addAttribute(Attribute attribute){
+        attributes.add(attribute);
     }
 
 }

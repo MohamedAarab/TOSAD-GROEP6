@@ -2,18 +2,15 @@ import domain.businessRule.BusinessRule;
 import domain.businessRule.Definition;
 import domain.businessRule.OracleScript;
 import domain.businessRule.Script;
-import domain.businessRuleType.AttributeCompareRule;
-import domain.businessRuleType.BusinessRuleType;
-import domain.businessRuleType.Operator;
-import domain.businessRuleType.RangeRule;
+import domain.businessRuleType.*;
 import domain.targetDatabase.Attribute;
 
 import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        BusinessRuleType ACMPtype = new AttributeCompareRule("ACMP", "Attribute Compare Rule", "HI");
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        /*BusinessRuleType ACMPtype = new AttributeCompareRule("ACMP", "Attribute Compare Rule", "HI");
         BusinessRuleType ARNGtype = new RangeRule("ARNG", "Attribute Range Rule", "");
 
         BusinessRule attributeCompareRule = new BusinessRule(ACMPtype);
@@ -31,6 +28,12 @@ public class Main {
         rangeRule.addDefinition(new Definition("maximum", 20));
         rangeRule.setFirstAttribute(new Attribute("attribute"));
         Script script2 = new OracleScript("testScript",Arrays.asList("update","insert"), rangeRule);
-        script2.generate();
+        script2.generate();*/
+
+        String range = "domain.businessRuleType.Attribute -Compare- Rule".replaceAll(" ", "").replaceAll("-", "");
+        BusinessRuleType rangeObj = (BusinessRuleType) Class.forName(range).newInstance();
+        for(ITemplate t : rangeObj.getTemplates()){
+            System.out.println(t.getTemplate().toString());
+        }
     }
 }

@@ -24,4 +24,23 @@ public class TargetDatabase {
     public List<Scheme> getSchemes(){
         return schemes;
     }
+
+    public String getHost() {
+        return host;
+    }
+
+    public Scheme getSchemeByName(String schemeName){
+        Scheme scheme = null;
+        for(Scheme s : schemes){
+            if(s.getName().equals(schemeName)){
+                scheme = s;
+                break;
+            }
+        }
+        return scheme;
+    }
+
+    public void addScheme(Scheme scheme){
+        schemes.add(scheme);
+    }
 }
