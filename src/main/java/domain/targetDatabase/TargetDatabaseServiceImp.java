@@ -34,8 +34,8 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public void connectToDatabase(String host, String username, String password) {
-        addTargetDatabase(daoService.connectToDatabase(host,username,password));
+    public void connectToDatabase(String type, String host, String username, String password) {
+        addTargetDatabase(daoService.connectToDatabase(type, host,username,password));
     }
 
     @Override

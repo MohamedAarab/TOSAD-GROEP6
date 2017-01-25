@@ -4,6 +4,10 @@ import domain.businessRule.OracleScript;
 import domain.businessRule.Script;
 import domain.businessRuleType.*;
 import domain.targetDatabase.Attribute;
+import domain.targetDatabase.Scheme;
+import domain.targetDatabase.Table;
+import domain.targetDatabase.TargetDatabase;
+import infrastructure.TargetDatabaseDAO;
 
 import java.util.*;
 
@@ -34,6 +38,17 @@ public class Main {
         BusinessRuleType rangeObj = (BusinessRuleType) Class.forName(range).newInstance();
         for(ITemplate t : rangeObj.getTemplates()){
             System.out.println(t.getTemplate().toString());
+        }
+
+        TargetDatabase targetDatabase = new TargetDatabaseDAO("MySQL", "admin12", "admin12!", "mysql4.gear.host").createTargetDatabase();
+        for(Scheme s : targetDatabase.getSchemes()){
+            System.out.println("Scheme: " + s.getName());
+            for (Table t : s.getTables()){
+                System.out.println("table: " + t.getName());
+                for(Attribute a : t.getAttributes()){
+                    System.out.println("Scheme : " + s.getName() + ", Table : " + t.getName() + ", Attribute : " + a.getName());
+                }
+            }
         }
     }
 }

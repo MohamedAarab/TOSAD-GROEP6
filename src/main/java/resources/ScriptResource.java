@@ -39,7 +39,7 @@ public class ScriptResource {
         attributeCompareRule.setErrorMessage("error1");
         Script script = new OracleScript("testScript", Arrays.asList("update","insert"), attributeCompareRule);
         JsonObjectBuilder job1 = Json.createObjectBuilder();
-        job.add(attributeCompareRule.getName(), script.generate());
+        job.add(attributeCompareRule.getName(), script.generate("table1"));
 
         BusinessRule rangeRule = new BusinessRule(ARNGtype);
         rangeRule.setName("range_rule");
@@ -49,7 +49,7 @@ public class ScriptResource {
         rangeRule.setFirstAttribute(new Attribute("attribute"));
         Script script2 = new OracleScript("testScript",Arrays.asList("update","insert"), rangeRule);
         JsonObjectBuilder job2 = Json.createObjectBuilder();
-        job.add(rangeRule.getName(), script2.generate());
+        job.add(rangeRule.getName(), script2.generate("table2"));
         return job.build().toString();
     }
 }
