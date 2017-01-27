@@ -4,10 +4,8 @@ import domain.targetDatabase.Attribute;
 import domain.targetDatabase.Scheme;
 import domain.targetDatabase.Table;
 import domain.targetDatabase.TargetDatabase;
-import org.antlr.stringtemplate.StringTemplate;
-import org.w3c.dom.Attr;
+import domain.businessRule.StringTemplate;
 
-import javax.smartcardio.ATR;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,7 @@
 package infrastructure;
 
-import org.antlr.stringtemplate.StringTemplate;
+
+import domain.businessRule.StringTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,17 +14,9 @@ public class MySQLSyntax implements IDatabaseSyntax {
 
     public MySQLSyntax(){
         constraintTemplates = new HashMap<String, StringTemplate>();
-        constraintTemplates.put("CompareRule", generateStringTemplate("$firstAttribute$ $operator$ $comparevalue$;"));
-        constraintTemplates.put("ListRule", generateStringTemplate("$firstAttribute$ $operator$ $listValue$;"));
-        constraintTemplates.put("AttributeRangeRule", generateStringTemplate("$firstAttribute$ $minimum$ $operator$ $maximum$"));
-    }
-
-    private StringTemplate generateStringTemplate(String string){
-        StringTemplate template = new StringTemplate(string);
-        template.setAttribute("firstAttribute", "");
-        template.setAttribute("operator", "");
-        template.setAttribute("comparevalue", "");
-        return template;
+        constraintTemplates.put("CompareRule", new StringTemplate("$firstAttribute$ $operator$ $comparevalue$;"));
+        constraintTemplates.put("ListRule", new StringTemplate("$firstAttribute$ $operator$ $listValue$;"));
+        constraintTemplates.put("AttributeRangeRule", new StringTemplate("$firstAttribute$ $minimum$ $operator$ $maximum$"));
     }
 
     @Override

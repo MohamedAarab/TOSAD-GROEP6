@@ -2,6 +2,8 @@ package infrastructure;
 
 import domain.businessRule.BusinessRule;
 
+import java.util.List;
+
 /**
  * Created by lucas on 27-1-2017.
  */
@@ -15,5 +17,10 @@ public class ToolDatabaseServiceImp implements IToolDatabaseService {
     @Override
     public String getTableNameFromBusinessRule(String businessRuleName) {
         return toolDatabaseConnection.getTableNameFromBusinessRule(businessRuleName);
+    }
+
+    @Override
+    public List<String> getAllDatabaseTypes() {
+        return toolDatabaseConnection.getAllDatabaseTypes();
     }
 }

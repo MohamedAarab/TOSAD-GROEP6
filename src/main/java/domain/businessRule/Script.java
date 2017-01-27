@@ -1,7 +1,6 @@
 package domain.businessRule;
 
 import infrastructure.SyntaxManager;
-import org.antlr.stringtemplate.StringTemplate;
 
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class Script {
     public String generate(String tableName, String scriptType)
     {
         StringTemplate triggerTemplate = SyntaxManager.getInstance().getTriggerTemplate(scriptType);
-        System.out.println(businessRule.getBusinessRuleType().getName());
         StringTemplate constraintTemplate = SyntaxManager.getInstance().getConstraintTemplate(scriptType, businessRule.getBusinessRuleType().getName().replace(" ", ""));
         triggerTemplate.setAttribute("trigger_name", name);
         String event = "";
@@ -35,7 +33,7 @@ public class Script {
         triggerTemplate.setAttribute("table_name", tableName);
         triggerTemplate.setAttribute("error_message", businessRule.getErrorMessage());
         for(Definition definition : businessRule.getDefinitions()){
-            constraintTemplate.setAttribute(definition.getName(), definition.getValue());
+            constraintTemplate.setAttribute(definition.getName(), definition.getValue().toString());
         }
         constraintTemplate.setAttribute("operator", businessRule.getOperator().getOperator());
         constraintTemplate.setAttribute("firstAttribute", businessRule.getFirstAttribute().getName());

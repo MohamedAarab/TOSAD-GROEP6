@@ -1,8 +1,9 @@
 package infrastructure;
 
-import org.antlr.stringtemplate.StringTemplate;
+import domain.businessRule.StringTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,9 +19,12 @@ public class SyntaxManager {
         //voorbeeld van apex krijgen we : Oracle
         //instantiate Class met naam Oracle+Syntax
         //voeg nieuwe Class aan syntaxMap toe met als key Oracle
-        String scriptType = "MySQL";
+        //String scriptType = "MySQL";
         try {
-            syntaxMap.put(scriptType, (IDatabaseSyntax)Class.forName("infrastructure."+ scriptType + "Syntax").newInstance());
+            List<String> databaseTypes = new ToolDatabaseConnection().getAllDatabaseTypes();
+            for(String scriptType : databaseTypes){
+                syntaxMap.put(scriptType, (IDatabaseSyntax)Class.forName("infrastructure."+ scriptType + "Syntax").newInstance());
+            }
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

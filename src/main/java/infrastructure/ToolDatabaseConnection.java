@@ -108,4 +108,16 @@ public class ToolDatabaseConnection {
         String attribute = businessRuleJSON.getString("attribute");
         return attribute.split("\\.")[1];
     }
+
+    public List<String> getAllDatabaseTypes(){
+        List<String> types = new ArrayList<String>();
+        String url = host + workspace + "/scripttypes";
+        JsonArray jay = getJsonFromURL(url).getJsonArray("items");
+        int i =0;
+        while (i <jay.size()){
+            types.add(((JsonObject) jay.get(i)).getString("name"));
+            i++;
+        }
+        return types;
+    }
 }

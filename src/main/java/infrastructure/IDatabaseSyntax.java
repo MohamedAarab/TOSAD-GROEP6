@@ -1,6 +1,7 @@
 package infrastructure;
 
-import org.antlr.stringtemplate.StringTemplate;
+
+import domain.businessRule.StringTemplate;
 
 /**
  * Created by lucas on 25-1-2017.
