@@ -38,4 +38,14 @@ public class Table {
         attributes.add(attribute);
     }
 
+    @Override
+    public String toString() {
+        String returnString = "Table : " + name + ", Attributes [";
+        for(Attribute attribute : attributes){
+            returnString += attribute.toString() + " ,";
+        }
+        returnString = returnString.substring(0,returnString.length()-1);
+        returnString += "]";
+        return returnString;
+    }
 }

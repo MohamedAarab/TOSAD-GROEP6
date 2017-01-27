@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public class SyntaxManager {
     private Map<String, IDatabaseSyntax> syntaxMap = new HashMap<String, IDatabaseSyntax>();
+    //        databasetype, syntax
     private static SyntaxManager syntaxManager;
 
     public SyntaxManager(){
@@ -17,7 +18,16 @@ public class SyntaxManager {
         //voorbeeld van apex krijgen we : Oracle
         //instantiate Class met naam Oracle+Syntax
         //voeg nieuwe Class aan syntaxMap toe met als key Oracle
-
+        String scriptType = "MySQL";
+        try {
+            syntaxMap.put(scriptType, (IDatabaseSyntax)Class.forName("infrastructure."+ scriptType + "Syntax").newInstance());
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         //wanneer methodes worden aangeroepen, Altijd SyntaxManager.getInstance() en dan de gewenste methode.
     }
 
@@ -31,15 +41,21 @@ public class SyntaxManager {
         return syntaxMap.get(type).getTriggerTemplate();
     }
 
-    public String getTableSelect(String type) {
-        return syntaxMap.get(type).getTableSelect();
+    public StringTemplate getTablesTemplate(String type) {
+        return syntaxMap.get(type).getTables();
     }
 
-    public String getSchemeSelect(String type) {
-        return syntaxMap.get(type).getSchemeSelect();
+    public StringTemplate getSchemesTemplate(String type) {
+        return syntaxMap.get(type).getSchemes();
     }
 
-    public String getAttributeSelect(String type) {
-        return syntaxMap.get(type).getAttributeSelect();
+    public StringTemplate getAttributesTemplate(String type) {
+        return syntaxMap.get(type).getAttributes();
+    }
+
+    public StringTemplate getConstraintTemplate(String syntaxType, String ruleType){
+        if(ruleType.contains("CompareRule"))
+           ruleType = "CompareRule";
+        return syntaxMap.get(syntaxType).getConstraintTemplate(ruleType);
     }
 }

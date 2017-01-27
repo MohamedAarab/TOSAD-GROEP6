@@ -1,11 +1,14 @@
 package domain.businessRule;
 
+import infrastructure.SyntaxManager;
+import org.antlr.stringtemplate.StringTemplate;
+
 import java.util.List;
 
 /**
  * Created by Unknown on 01/18/2017.
  */
-public abstract class Script {
+public class Script {
     protected String name;
     protected String triggerCode;
     protected List<String> triggerEvent;
@@ -17,8 +20,27 @@ public abstract class Script {
         this.businessRule = businessRule;
     }
 
-    public abstract String generate(String tableName); /*{
-        businessRule.getBusinessRuleType().generate(businessRule.getDefinitions(), businessRule.getOperator());
+    public String generate(String tableName, String scriptType)
+    {
+        StringTemplate triggerTemplate = SyntaxManager.getInstance().getTriggerTemplate(scriptType);
+        System.out.println(businessRule.getBusinessRuleType().getName());
+        StringTemplate constraintTemplate = SyntaxManager.getInstance().getConstraintTemplate(scriptType, businessRule.getBusinessRuleType().getName().replace(" ", ""));
+        triggerTemplate.setAttribute("trigger_name", name);
+        String event = "";
+        for(String s : triggerEvent){
+            event += s + " or ";
+        }
+        event = event.substring(0, event.length() - 3);
+        triggerTemplate.setAttribute("trigger_event", event);
+        triggerTemplate.setAttribute("table_name", tableName);
+        triggerTemplate.setAttribute("error_message", businessRule.getErrorMessage());
+        for(Definition definition : businessRule.getDefinitions()){
+            constraintTemplate.setAttribute(definition.getName(), definition.getValue());
+        }
+        constraintTemplate.setAttribute("operator", businessRule.getOperator().getOperator());
+        constraintTemplate.setAttribute("firstAttribute", businessRule.getFirstAttribute().getName());
+        triggerTemplate.setAttribute("trigger_code", "l_passed := " + constraintTemplate.toString());
+        this.triggerCode = triggerTemplate.toString();
+        return triggerTemplate.toString();
     }
-*/
 }

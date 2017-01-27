@@ -4,6 +4,9 @@ public class Definition {
     private String name;
     private Object value;
 
+    public Definition() {
+    }
+
     public Definition(String name, Object value) {
         this.name = name;
         this.value = value;
@@ -15,5 +18,21 @@ public class Definition {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Definition{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

@@ -4,6 +4,7 @@ import domain.targetDatabase.Attribute;
 import domain.targetDatabase.Scheme;
 import domain.targetDatabase.Table;
 import domain.targetDatabase.TargetDatabase;
+import org.antlr.stringtemplate.StringTemplate;
 import org.w3c.dom.Attr;
 
 import javax.smartcardio.ATR;
@@ -15,6 +16,8 @@ import java.util.List;
  * Created by lucas on 25-1-2017.
  */
 public class TargetDatabaseDAO extends BaseDAO {
+    private SyntaxManager syntaxManager = SyntaxManager.getInstance();
+
     public TargetDatabaseDAO(String type, String targetUsername, String targetPassword, String targetUrl) {
         super(type, targetUsername, targetPassword, targetUrl);
     }
@@ -30,7 +33,6 @@ public class TargetDatabaseDAO extends BaseDAO {
                 }
             }
         }
-        //// TODO: 25-1-2017
         return targetDatabase;
     }
 
@@ -51,7 +53,9 @@ public class TargetDatabaseDAO extends BaseDAO {
         List<Table> tables = new ArrayList<Table>();
         try(Connection connection = super.getConnection()){
             Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT table_name FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='" + schemeName + "'");
+            StringTemplate query = syntaxManager.getTablesTemplate(getDatabaseType());
+            query.setAttribute("schemeName", schemeName);
+            ResultSet resultSet = stmt.executeQuery(query.toString());
             while(resultSet.next()){
                 tables.add(new Table(resultSet.getString(1)));
             }
@@ -65,7 +69,10 @@ public class TargetDatabaseDAO extends BaseDAO {
         List<Attribute> attributes = new ArrayList<Attribute>();
         try(Connection connection = super.getConnection()){
             Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("DESCRIBE " + schemeName + "." + tableName);
+            StringTemplate query = syntaxManager.getAttributesTemplate(getDatabaseType());
+            query.setAttribute("schemeName", schemeName);
+            query.setAttribute("tableName", tableName);
+            ResultSet resultSet = stmt.executeQuery(query.toString());
             while (resultSet.next()){
                 attributes.add(new Attribute(resultSet.getString(1)));
             }

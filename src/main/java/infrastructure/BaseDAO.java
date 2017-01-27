@@ -3,6 +3,8 @@ package infrastructure;
 import javax.naming.InitialContext;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
+
 import com.mysql.jdbc.Driver;
 
 /**
@@ -25,8 +27,7 @@ public class BaseDAO {
         Connection result = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            InitialContext ic = new InitialContext();
-            result = DriverManager.getConnection("jdbc:mysql://"+this.targetUrl +":3306" , this.targetUsername, this.targetPassword);
+            result = DriverManager.getConnection("jdbc:"+databaseType.toLowerCase()+ "://"+this.targetUrl +":3306" , this.targetUsername, this.targetPassword);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }

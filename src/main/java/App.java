@@ -13,7 +13,7 @@ public class App
     public static void main( String[] args )
     {
         ResourceConfig config = new ResourceConfig();
-        config.packages("resources");
+        config.packages("task");
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
 
         Server server = new Server(8081);

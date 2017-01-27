@@ -8,7 +8,7 @@ import domain.targetDatabase.TargetDatabase;
 public class DAOServiceImp implements IDAOService{
     @Override
     public TargetDatabase connectToDatabase(String type, String host, String username, String password) {
-        TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, host,password,username);
+        TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, username, password,host);
         return targetDatabaseDAO.createTargetDatabase();
     }
 

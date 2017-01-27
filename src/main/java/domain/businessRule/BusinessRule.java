@@ -18,6 +18,10 @@ public class BusinessRule {
     private List<Definition> definitions;
     private BusinessRuleType businessRuleType;
 
+    public BusinessRule() {
+        this(null);
+    }
+
     public BusinessRule(BusinessRuleType businessRuleType){
         definitions = new ArrayList<Definition>();
         this.businessRuleType = businessRuleType;

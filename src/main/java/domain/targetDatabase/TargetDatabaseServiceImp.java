@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     private List<TargetDatabase> targetDatabases;
+    private static TargetDatabaseServiceImp instance;
     private IDAOService daoService;
 
     public TargetDatabaseServiceImp(){
@@ -20,17 +21,17 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
 
     @Override
     public List<Scheme> getAllSchemes(String host) {
-        return null;
+        return getTargetDatabaseByHost(host).getSchemes();
     }
 
     @Override
     public List<Table> getTablesFromScheme(String host, String schemeName) {
-        return null;
+        return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTables();
     }
 
     @Override
     public List<Attribute> getAttributesFromTable(String host, String schemeName, String tableName) {
-        return null;
+        return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTableByName(tableName).getAttributes();
     }
 
     @Override
@@ -45,11 +46,21 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
 
     @Override
     public TargetDatabase getTargetDatabaseByHost(String host) {
+        for(TargetDatabase targetDatabase : getTargetDatabases()){
+            if(targetDatabase.getHost().equals(host))
+                return targetDatabase;
+        }
         return null;
+    }
+
+    public static TargetDatabaseServiceImp getInstance(){
+        if(instance == null)
+            instance = new TargetDatabaseServiceImp();
+        return instance;
     }
 
     @Override
     public List<TargetDatabase> getTargetDatabases() {
-        return null;
+        return targetDatabases;
     }
 }

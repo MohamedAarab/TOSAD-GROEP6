@@ -7,7 +7,8 @@ import org.antlr.stringtemplate.StringTemplate;
  */
 public interface IDatabaseSyntax {
     StringTemplate getTriggerTemplate();
-    String getTableSelect();
-    String getSchemeSelect();
-    String getAttributeSelect();
+    StringTemplate getTables();
+    StringTemplate getSchemes();
+    StringTemplate getAttributes();
+    StringTemplate getConstraintTemplate(String ruleType);
 }
