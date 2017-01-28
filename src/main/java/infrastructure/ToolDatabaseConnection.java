@@ -27,14 +27,14 @@ public class ToolDatabaseConnection {
     public BusinessRule getBusinessRule(String businessruleName){
         String businessrulesURL = host + workspace + "/businessrules/";
         JsonObject businessRuleJSON = (JsonObject) getJsonFromURL(businessrulesURL + businessruleName).getJsonArray("items").get(0);
-        List<Definition> definitions = getDefinitions(businessruleName);
+        //List<Definition> definitions = getDefinitions(businessruleName);
         BusinessRule businessRule = new BusinessRule(getBusinessRuleTypeByCode(businessRuleJSON.getString("business_rule_type_code")));
         businessRule.setName(businessRuleJSON.getString("name"));
         businessRule.setErrorMessage(businessRuleJSON.getString("error_message"));
         businessRule.setFirstAttribute(new Attribute(businessRuleJSON.getString("attribute").substring(businessRuleJSON.getString("attribute").lastIndexOf(".") +1, businessRuleJSON.getString("attribute").length())));
-        for(Definition definition : definitions) {
+        /*for(Definition definition : definitions) {
             businessRule.addDefinition(definition);
-        }
+        }*/
         businessRule.setOperator(getOperatorByName(businessRuleJSON.getString("operator_name")));
         return businessRule;
     }
@@ -65,7 +65,7 @@ public class ToolDatabaseConnection {
         return object;
     }
 
-    private List<Definition> getDefinitions(String businessruleName){
+    public List<Definition> getDefinitions(String businessruleName){
         String businessruleDefinitionURL = host + workspace + "/businessrule/" + businessruleName + "/definitions";
         List<Definition> definitions = new ArrayList<Definition>();
         JsonObject definitionsJSON = getJsonFromURL(businessruleDefinitionURL);
@@ -88,14 +88,14 @@ public class ToolDatabaseConnection {
         return definitions;
     }
 
-    private Operator getOperatorByName(String operatorName){
+    public Operator getOperatorByName(String operatorName){
         String getOperatorURL = host + workspace + "/operator/" + operatorName;
         JsonObject response = (JsonObject) getJsonFromURL(getOperatorURL).getJsonArray("items").get(0);
         Operator operator = new Operator(response.getString("name"), response.getString("operator"));
         return operator;
     }
 
-    private BusinessRuleType getBusinessRuleTypeByCode(String code){
+    public BusinessRuleType getBusinessRuleTypeByCode(String code){
         String getBusinessRuleTypeURL = host + workspace + "/BusinessRuleType/" + code;
         JsonObject response = (JsonObject) getJsonFromURL(getBusinessRuleTypeURL).getJsonArray("items").get(0);
         BusinessRuleType businessRuleType = new BusinessRuleType(response.getString("code"), response.getString("name"), response.getString("description"));

@@ -9,8 +9,9 @@ public interface ITargetDatabaseService {
     List<Scheme> getAllSchemes(String host);
     List<Table> getTablesFromScheme(String host, String schemeName);
     List<Attribute> getAttributesFromTable(String host, String schemeName, String tableName);
-    void connectToDatabase(String type, String host, String username, String password);
+    void connectToDatabase(String type, String host, String databaseName, String username, String password);
     void addTargetDatabase(TargetDatabase targetDatabase);
     TargetDatabase getTargetDatabaseByHost(String host);
     List<TargetDatabase> getTargetDatabases();
+    String executeScript(String host, String triggerCode);
 }

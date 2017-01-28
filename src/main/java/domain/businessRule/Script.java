@@ -29,7 +29,7 @@ public class Script {
             event += s + " or ";
         }
         event = event.substring(0, event.length() - 3);
-        triggerTemplate.setAttribute("trigger_event", event);
+        triggerTemplate.setAttribute("trigger_event", triggerEvent.get(0));
         triggerTemplate.setAttribute("table_name", tableName);
         triggerTemplate.setAttribute("error_message", businessRule.getErrorMessage());
         for(Definition definition : businessRule.getDefinitions()){
@@ -37,7 +37,7 @@ public class Script {
         }
         constraintTemplate.setAttribute("operator", businessRule.getOperator().getOperator());
         constraintTemplate.setAttribute("firstAttribute", businessRule.getFirstAttribute().getName());
-        triggerTemplate.setAttribute("trigger_code", "l_passed := " + constraintTemplate.toString());
+        triggerTemplate.setAttribute("constraint", constraintTemplate.toString());
         this.triggerCode = triggerTemplate.toString();
         return triggerTemplate.toString();
     }

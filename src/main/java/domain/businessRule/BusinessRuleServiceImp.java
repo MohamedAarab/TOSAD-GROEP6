@@ -12,7 +12,7 @@ import java.util.List;
  * Created by lucas on 26-1-2017.
  */
 public class BusinessRuleServiceImp implements IBusinessRuleService {
-    IToolDatabaseService toolDatabaseService;
+    private IToolDatabaseService toolDatabaseService;
 
     public BusinessRuleServiceImp() {
         toolDatabaseService = new ToolDatabaseServiceImp();
@@ -20,27 +20,16 @@ public class BusinessRuleServiceImp implements IBusinessRuleService {
 
     @Override
     public BusinessRule createBusinessRuleForCode(String businessRuleName) {
-        return toolDatabaseService.getBusinessRuleByName(businessRuleName);
-    }
-
-    @Override
-    public BusinessRule createBusinessRuleFromJSON(JsonObject businessRule) {
-        return null;
-    }
-
-    @Override
-    public Operator createOperatorFromJSON(JsonObject operator) {
-        return null;
-    }
-
-    @Override
-    public BusinessRuleType createBusinessRuleTypeFromJSON(JsonObject businessRuleType) {
-        return null;
+        BusinessRule businessRule = toolDatabaseService.getBusinessRuleByName(businessRuleName);
+        businessRule.setDefinitions(toolDatabaseService.getDefinitions(businessRuleName));
+        //businessRule.setBusinessRuleType(toolDatabaseService.get);
+        return businessRule;
     }
 
     @Override
     public String generateCode(BusinessRule businessRule, List<String> eventList, String scriptType, String tableName) {
         businessRule.getName();
+        // TODO: 28-1-2017  generate name
         String code = new Script("scriptName", eventList,businessRule).generate(tableName, scriptType);
         return code;
     }
@@ -48,10 +37,5 @@ public class BusinessRuleServiceImp implements IBusinessRuleService {
     @Override
     public String getTableNameFromBusinessRule(String businessRuleName) {
         return toolDatabaseService.getTableNameFromBusinessRule(businessRuleName);
-    }
-
-    @Override
-    public void executeScript(String host, String triggerCode) {
-
     }
 }

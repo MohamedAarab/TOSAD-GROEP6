@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class StringTemplate {
     private Map<String, String> attributeMap = null;
-    // identiefier(between dollar signs at start, value)
+    // identifier(between dollar signs at start, value)
     private String template;
 
     public StringTemplate(String template){

@@ -3,6 +3,7 @@ package domain.targetDatabase;
 import infrastructure.DAOServiceImp;
 import infrastructure.IDAOService;
 
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,23 +21,23 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public List<Scheme> getAllSchemes(String host) {
+    public List<Scheme> getAllSchemes(String host) throws NullPointerException {
         return getTargetDatabaseByHost(host).getSchemes();
     }
 
     @Override
-    public List<Table> getTablesFromScheme(String host, String schemeName) {
+    public List<Table> getTablesFromScheme(String host, String schemeName) throws NullPointerException{
         return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTables();
     }
 
     @Override
-    public List<Attribute> getAttributesFromTable(String host, String schemeName, String tableName) {
+    public List<Attribute> getAttributesFromTable(String host, String schemeName, String tableName) throws NullPointerException {
         return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTableByName(tableName).getAttributes();
     }
 
     @Override
-    public void connectToDatabase(String type, String host, String username, String password) {
-        addTargetDatabase(daoService.connectToDatabase(type, host,username,password));
+    public void connectToDatabase(String type, String host, String databaseName, String username, String password) throws NullPointerException {
+        addTargetDatabase(daoService.connectToDatabase(type, host,databaseName, username,password));
     }
 
     @Override
@@ -45,7 +46,7 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public TargetDatabase getTargetDatabaseByHost(String host) {
+    public TargetDatabase getTargetDatabaseByHost(String host) throws NullPointerException {
         for(TargetDatabase targetDatabase : getTargetDatabases()){
             if(targetDatabase.getHost().equals(host))
                 return targetDatabase;
@@ -62,5 +63,11 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     @Override
     public List<TargetDatabase> getTargetDatabases() {
         return targetDatabases;
+    }
+
+    @Override
+    public String executeScript(String host, String triggerCode) {
+        TargetDatabase targetDatabase = getTargetDatabaseByHost(host);
+        return daoService.executeScript(targetDatabase.getType(),targetDatabase.getHost(), targetDatabase.getName(), targetDatabase.getUsername(),targetDatabase.getPassword(), triggerCode);
     }
 }

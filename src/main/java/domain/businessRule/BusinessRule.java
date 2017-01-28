@@ -71,6 +71,14 @@ public class BusinessRule {
         return errorMessage;
     }
 
+    public void setBusinessRuleType(BusinessRuleType businessRuleType) {
+        this.businessRuleType = businessRuleType;
+    }
+
+    public void setDefinitions(List<Definition> definitions) {
+        this.definitions = definitions;
+    }
+
     public void save(){
         // TODO: 13-1-2017
     }

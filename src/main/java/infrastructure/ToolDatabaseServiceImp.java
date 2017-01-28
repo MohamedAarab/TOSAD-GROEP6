@@ -1,6 +1,9 @@
 package infrastructure;
 
 import domain.businessRule.BusinessRule;
+import domain.businessRule.Definition;
+import domain.businessRuleType.BusinessRuleType;
+import domain.businessRuleType.Operator;
 
 import java.util.List;
 
@@ -23,4 +26,21 @@ public class ToolDatabaseServiceImp implements IToolDatabaseService {
     public List<String> getAllDatabaseTypes() {
         return toolDatabaseConnection.getAllDatabaseTypes();
     }
+
+    @Override
+    public List<Definition> getDefinitions(String businessruleName) {
+        return toolDatabaseConnection.getDefinitions(businessruleName);
+    }
+
+    @Override
+    public Operator getOperatorByName(String operatorName) {
+        return toolDatabaseConnection.getOperatorByName(operatorName);
+    }
+
+    @Override
+    public BusinessRuleType getBusinessRuleTypeByCode(String code) {
+        return toolDatabaseConnection.getBusinessRuleTypeByCode(code);
+    }
+
+
 }

@@ -14,13 +14,14 @@ public class MySQLSyntax implements IDatabaseSyntax {
 
     public MySQLSyntax(){
         constraintTemplates = new HashMap<String, StringTemplate>();
-        constraintTemplates.put("CompareRule", new StringTemplate("$firstAttribute$ $operator$ $comparevalue$;"));
-        constraintTemplates.put("ListRule", new StringTemplate("$firstAttribute$ $operator$ $listValue$;"));
-        constraintTemplates.put("AttributeRangeRule", new StringTemplate("$firstAttribute$ $minimum$ $operator$ $maximum$"));
+        constraintTemplates.put("CompareRule", new StringTemplate("new.$firstAttribute$ $operator$ $comparevalue$;"));
+        constraintTemplates.put("ListRule", new StringTemplate("new.$firstAttribute$ $operator$ $listValue$;"));
+        constraintTemplates.put("AttributeRangeRule", new StringTemplate("new.$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
     }
 
     @Override
     public StringTemplate getTriggerTemplate() {
+        /* //oracle
         return new StringTemplate("CREATE OR REPLACE TRIGGER $trigger_name$\n"+
                 "before $trigger_event$\n"+
                 "   ON $table_name$\n"+
@@ -35,6 +36,18 @@ public class MySQLSyntax implements IDatabaseSyntax {
                 "EXCEPTION\n"+
                 "   WHEN others\n"+
                 "   -- exception handling\n"+
+                "END;");*/
+        return new StringTemplate(//"DELIMITER ** "+
+                //"DROP TRIGGER IF EXISTS $trigger_name$; ** " +
+                "CREATE TRIGGER $trigger_name$ " +
+                "before $trigger_event$ ON $table_name$ " +
+                "FOR EACH ROW " +
+                "BEGIN " +
+                "   DECLARE l_passed BOOLEAN DEFAULT FALSE; " +
+                "   set l_passed = $constraint$ " +
+                "   if l_passed = false then " +
+                "        signal sqlstate '45000' set message_text = '$error_message$'; " +
+                "   end if; " +
                 "END;");
     }
 

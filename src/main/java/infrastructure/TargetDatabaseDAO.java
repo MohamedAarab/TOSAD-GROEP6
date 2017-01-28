@@ -16,12 +16,12 @@ import java.util.List;
 public class TargetDatabaseDAO extends BaseDAO {
     private SyntaxManager syntaxManager = SyntaxManager.getInstance();
 
-    public TargetDatabaseDAO(String type, String targetUsername, String targetPassword, String targetUrl) {
-        super(type, targetUsername, targetPassword, targetUrl);
+    public TargetDatabaseDAO(String databaseType, String targetUsername, String targetPassword, String targetUrl, String databaseName) {
+        super(databaseType, targetUsername, targetPassword, targetUrl, databaseName);
     }
 
     public TargetDatabase createTargetDatabase(){
-        TargetDatabase targetDatabase = new TargetDatabase(getDatabaseType(), getTargetUrl(), getTargetUsername(), getTargetPassword());
+        TargetDatabase targetDatabase = new TargetDatabase(getDatabaseType(), getTargetUrl(), getDatabaseName(), getTargetUsername(), getTargetPassword());
         for(Scheme scheme : getSchemes()){
             targetDatabase.addScheme(scheme);
             for(Table table : getTables(scheme.getName())){
@@ -78,5 +78,16 @@ public class TargetDatabaseDAO extends BaseDAO {
             e.printStackTrace();
         }
         return attributes;
+    }
+
+    public String executeScript(String script){
+        String result = null;
+        try(Connection connection = super.getConnection()){
+            Statement stmt = connection.createStatement();
+            result = "succes";
+        } catch (SQLException e) {
+            result = e.getMessage();
+        }
+        return result;
     }
 }

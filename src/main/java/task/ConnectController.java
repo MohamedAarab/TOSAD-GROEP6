@@ -19,11 +19,11 @@ public class ConnectController implements IConnectController {
     TargetDatabaseServiceImp targetDatabaseService = TargetDatabaseServiceImp.getInstance() ;
 
     @GET
-    @Path("/connect/{targetURL}/{databaseType}/{username}/{password}")
+    @Path("/connect/{targetURL}/{databaseName}/{databaseType}/{username}/{password}")
     @Produces("application/json")
     @Override
-    public String connectToDatabase(@PathParam("targetURL") String host, @PathParam("databaseType") String databaseType, @PathParam("username") String username, @PathParam("password") String password) {
-        targetDatabaseService.connectToDatabase(databaseType,host,username,password);
+    public String connectToDatabase(@PathParam("targetURL") String host, @PathParam("databaseName") String databaseName, @PathParam("databaseType") String databaseType, @PathParam("username") String username, @PathParam("password") String password) {
+        targetDatabaseService.connectToDatabase(databaseType,host,databaseName,username,password);
         JsonObjectBuilder job = Json.createObjectBuilder();
         if(targetDatabaseService.getTargetDatabaseByHost(host) != null)
             job.add("succes", "true");
@@ -36,13 +36,18 @@ public class ConnectController implements IConnectController {
     @Path("/schemes/{targetURL}")
     @Produces("application/json")
     public String getAllSchemesFromDatabase(@PathParam("targetURL") String host){
-        List<Scheme> schemes = targetDatabaseService.getAllSchemes(host);
+        List<Scheme> schemes = null;
         JsonObjectBuilder job = Json.createObjectBuilder();
         JsonArrayBuilder jab = Json.createArrayBuilder();
-        for(Scheme scheme : schemes){
-            jab.add(scheme.getName());
+        try {
+            schemes = targetDatabaseService.getAllSchemes(host);
+            for(Scheme scheme : schemes){
+                jab.add(scheme.getName());
+            }
+            job.add("schemes", jab);
+        } catch (NullPointerException e){
+            job.add("schemes", "please connect to targetdatabase first!");
         }
-        job.add("schemes", jab);
         return job.build().toString();
     }
 
