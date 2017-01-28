@@ -82,8 +82,10 @@ public class TargetDatabaseDAO extends BaseDAO {
 
     public String executeScript(String script){
         String result = null;
+        System.out.println(script);
         try(Connection connection = super.getConnection()){
             Statement stmt = connection.createStatement();
+            stmt.execute(script);
             result = "succes";
         } catch (SQLException e) {
             result = e.getMessage();
