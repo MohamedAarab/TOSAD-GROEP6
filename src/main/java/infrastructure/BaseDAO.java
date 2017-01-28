@@ -11,25 +11,27 @@ import com.mysql.jdbc.Driver;
  * Created by Gebruiker on 18-1-2017.
  */
 public class BaseDAO {
+    private int port;
     private String databaseType;
     private String targetUsername;
     private String targetPassword;
     private String targetUrl;
     private String databaseName;
 
-    public BaseDAO(String databaseType, String targetUsername, String targetPassword, String targetUrl, String databaseName) {
+    public BaseDAO(String databaseType, String targetUsername, String targetPassword, String targetUrl, String databaseName, int port) {
         this.databaseType = databaseType;
         this.targetUsername = targetUsername;
         this.targetPassword = targetPassword;
         this.targetUrl = targetUrl;
         this.databaseName = databaseName;
+        this.port = port;
     }
 
     protected final Connection getConnection() {
         Connection result = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            result = DriverManager.getConnection("jdbc:"+databaseType.toLowerCase()+ "://"+this.targetUrl +":3306/" + this.databaseName , this.targetUsername, this.targetPassword);
+            result = DriverManager.getConnection("jdbc:"+databaseType.toLowerCase()+ "://"+this.targetUrl +":" + this.port + "/" + this.databaseName , this.targetUsername, this.targetPassword);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -54,5 +56,9 @@ public class BaseDAO {
 
     public String getDatabaseName() {
         return databaseName;
+    }
+
+    public int getPort() {
+        return port;
     }
 }

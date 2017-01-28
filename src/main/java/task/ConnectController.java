@@ -19,11 +19,11 @@ public class ConnectController implements IConnectController {
     TargetDatabaseServiceImp targetDatabaseService = TargetDatabaseServiceImp.getInstance() ;
 
     @GET
-    @Path("/connect/{targetURL}/{databaseName}/{databaseType}/{username}/{password}")
+    @Path("/connect/{targetURL}/{port}/{databaseName}/{databaseType}/{username}/{password}")
     @Produces("application/json")
     @Override
-    public String connectToDatabase(@PathParam("targetURL") String host, @PathParam("databaseName") String databaseName, @PathParam("databaseType") String databaseType, @PathParam("username") String username, @PathParam("password") String password) {
-        targetDatabaseService.connectToDatabase(databaseType,host,databaseName,username,password);
+    public String connectToDatabase(@PathParam("targetURL") String host, @PathParam("port") int port, @PathParam("databaseName") String databaseName, @PathParam("databaseType") String databaseType, @PathParam("username") String username, @PathParam("password") String password) {
+        targetDatabaseService.connectToDatabase(databaseType,host,port,databaseName,username,password);
         JsonObjectBuilder job = Json.createObjectBuilder();
         if(targetDatabaseService.getTargetDatabaseByHost(host) != null)
             job.add("succes", "true");
@@ -78,5 +78,4 @@ public class ConnectController implements IConnectController {
         job.add("attributes", jab);
         return job.build().toString();
     }
-
 }

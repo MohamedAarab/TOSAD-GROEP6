@@ -7,14 +7,14 @@ import domain.targetDatabase.TargetDatabase;
  */
 public class DAOServiceImp implements IDAOService{
     @Override
-    public TargetDatabase connectToDatabase(String type, String host, String databaseName, String username, String password) {
-        TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, username, password,host, databaseName);
+    public TargetDatabase connectToDatabase(String type, String host, int port, String databaseName, String username, String password) {
+        TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, username, password,host, port, databaseName);
         return targetDatabaseDAO.createTargetDatabase();
     }
 
     @Override
-    public String executeScript(String type, String host, String databaseName, String username, String password, String triggerCode) {
-        TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, username, password,host, databaseName);
+    public String executeScript(String type, String host, int port, String databaseName, String username, String password, String triggerCode) {
+        TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, username, password,host,port, databaseName);
         return targetDatabaseDAO.executeScript(triggerCode);
     }
 }

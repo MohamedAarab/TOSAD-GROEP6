@@ -16,12 +16,12 @@ import java.util.List;
 public class TargetDatabaseDAO extends BaseDAO {
     private SyntaxManager syntaxManager = SyntaxManager.getInstance();
 
-    public TargetDatabaseDAO(String databaseType, String targetUsername, String targetPassword, String targetUrl, String databaseName) {
-        super(databaseType, targetUsername, targetPassword, targetUrl, databaseName);
+    public TargetDatabaseDAO(String databaseType, String targetUsername, String targetPassword, String targetUrl, int port, String databaseName) {
+        super(databaseType, targetUsername, targetPassword, targetUrl, databaseName, port);
     }
 
     public TargetDatabase createTargetDatabase(){
-        TargetDatabase targetDatabase = new TargetDatabase(getDatabaseType(), getTargetUrl(), getDatabaseName(), getTargetUsername(), getTargetPassword());
+        TargetDatabase targetDatabase = new TargetDatabase(getDatabaseType(), getTargetUrl(), getPort(), getDatabaseName(), getTargetUsername(), getTargetPassword());
         for(Scheme scheme : getSchemes()){
             targetDatabase.addScheme(scheme);
             for(Table table : getTables(scheme.getName())){

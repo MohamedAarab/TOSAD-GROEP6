@@ -36,8 +36,8 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public void connectToDatabase(String type, String host, String databaseName, String username, String password) throws NullPointerException {
-        addTargetDatabase(daoService.connectToDatabase(type, host,databaseName, username,password));
+    public void connectToDatabase(String type, String host, int port, String databaseName, String username, String password) throws NullPointerException {
+        addTargetDatabase(daoService.connectToDatabase(type, host, port, databaseName, username,password));
     }
 
     @Override
@@ -68,6 +68,6 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     @Override
     public String executeScript(String host, String triggerCode) {
         TargetDatabase targetDatabase = getTargetDatabaseByHost(host);
-        return daoService.executeScript(targetDatabase.getType(),targetDatabase.getHost(), targetDatabase.getName(), targetDatabase.getUsername(),targetDatabase.getPassword(), triggerCode);
+        return daoService.executeScript(targetDatabase.getType(),targetDatabase.getHost(), targetDatabase.getPort(), targetDatabase.getName(), targetDatabase.getUsername(),targetDatabase.getPassword(), triggerCode);
     }
 }

@@ -21,7 +21,7 @@ public class Main {
         /*String host = "128.140.222.220";
         targetDatabaseService.connectToDatabase("MySQL", host, "advertmedi_tos","advertmedi_tos", "07yomnM4");*/
         String host = "mysql4.gear.host";
-        targetDatabaseService.connectToDatabase("MySQL", host, "test67", "admin12", "admin12!");
+        targetDatabaseService.connectToDatabase("MySQL", host, 3306, "test67", "admin12", "admin12!");
         for(Scheme s : targetDatabaseService.getAllSchemes(host)){
             System.out.println(s.toString());
         }

@@ -7,6 +7,7 @@ import java.util.List;
  * Created by lucas on 13-1-2017.
  */
 public class TargetDatabase {
+    private int port;
     private String name;
     private String type;
     private String host;
@@ -14,9 +15,10 @@ public class TargetDatabase {
     private String password;
     private List<Scheme> schemes;
 
-    public TargetDatabase(String type, String host, String name, String username, String password) {
+    public TargetDatabase(String type, String host, int port, String name, String username, String password) {
         this.type = type;
         this.host = host;
+        this.port = port;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -60,5 +62,9 @@ public class TargetDatabase {
 
     public String getName() {
         return name;
+    }
+
+    public int getPort() {
+        return port;
     }
 }
