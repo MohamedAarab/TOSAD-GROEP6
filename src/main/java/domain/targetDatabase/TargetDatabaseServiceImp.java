@@ -2,6 +2,7 @@ package domain.targetDatabase;
 
 import infrastructure.DAOServiceImp;
 import infrastructure.IDAOService;
+import infrastructure.SyntaxManager;
 
 import javax.validation.constraints.Null;
 import java.util.ArrayList;
@@ -69,5 +70,10 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     public String executeScript(String host, String triggerCode) {
         TargetDatabase targetDatabase = getTargetDatabaseByHost(host);
         return daoService.executeScript(targetDatabase.getType(),targetDatabase.getHost(), targetDatabase.getPort(), targetDatabase.getName(), targetDatabase.getUsername(),targetDatabase.getPassword(), triggerCode);
+    }
+
+    @Override
+    public SyntaxManager.DataType getDatabaseTypeFromAttribute(String host, String schemeName, String tableName, String attributeName) {
+        return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTableByName(tableName).getAttributeByName(attributeName).getType();
     }
 }

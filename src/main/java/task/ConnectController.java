@@ -1,6 +1,7 @@
 package task;
 
 import domain.targetDatabase.*;
+import infrastructure.SyntaxManager;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -79,6 +80,16 @@ public class ConnectController implements IConnectController {
             jab.add(attribute.getName());
         }
         job.add("attributes", jab);
+        return job.build().toString();
+    }
+
+    @GET
+    @Path("/attributetype/{targetURL}/{schemeName}/{tableName}/{attributeName}")
+    @Produces("application/json")
+    public String getDatabaseTypeFromAttribute(@PathParam("targetURL") String host, @PathParam("schemeName") String schemeName, @PathParam("tableName") String tableName, @PathParam("attributeName") String attributeName){
+        SyntaxManager.DataType dataType = targetDatabaseService.getDatabaseTypeFromAttribute(host, schemeName, tableName, attributeName);
+        JsonObjectBuilder job = Json.createObjectBuilder();
+        job.add("datatype", dataType.toString());
         return job.build().toString();
     }
 }

@@ -1,5 +1,7 @@
 package domain.targetDatabase;
 
+import infrastructure.SyntaxManager;
+
 import java.util.List;
 
 /**
@@ -14,4 +16,5 @@ public interface ITargetDatabaseService {
     TargetDatabase getTargetDatabaseByHost(String host);
     List<TargetDatabase> getTargetDatabases();
     String executeScript(String host, String triggerCode);
+    SyntaxManager.DataType getDatabaseTypeFromAttribute(String host, String schemeName, String tableName, String attributeName);
 }

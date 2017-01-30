@@ -57,6 +57,18 @@ public class MySQLSyntax implements IDatabaseSyntax {
     }
 
     @Override
+    public SyntaxManager.DataType getDataType(String dataTypeIN){
+        if(dataTypeIN.contains("int")){
+            return SyntaxManager.DataType.numeric;
+        } else if(dataTypeIN.contains("varchar")){
+            return SyntaxManager.DataType.text;
+        } else if(dataTypeIN.contains("datetime")){
+            return SyntaxManager.DataType.date;
+        }
+        return null;
+    }
+
+    @Override
     public StringTemplate getSchemes() {
         return null;
     }

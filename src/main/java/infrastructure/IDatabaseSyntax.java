@@ -12,4 +12,5 @@ public interface IDatabaseSyntax {
     StringTemplate getSchemes();
     StringTemplate getAttributes();
     StringTemplate getConstraintTemplate(String ruleType);
+    SyntaxManager.DataType getDataType(String dataTypeIN);
 }

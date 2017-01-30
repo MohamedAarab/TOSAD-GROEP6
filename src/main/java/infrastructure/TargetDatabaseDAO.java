@@ -72,7 +72,7 @@ public class TargetDatabaseDAO extends BaseDAO {
             query.setAttribute("tableName", tableName);
             ResultSet resultSet = stmt.executeQuery(query.toString());
             while (resultSet.next()){
-                attributes.add(new Attribute(resultSet.getString(1)));
+                attributes.add(new Attribute(resultSet.getString(1),syntaxManager.getDataType(getDatabaseType(),resultSet.getString(2))));
             }
         } catch (SQLException e) {
             e.printStackTrace();

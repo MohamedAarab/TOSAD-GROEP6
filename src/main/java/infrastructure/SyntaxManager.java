@@ -14,6 +14,12 @@ public class SyntaxManager {
     //        databasetype, syntax
     private static SyntaxManager syntaxManager;
 
+    public enum DataType{
+        text,
+        numeric,
+        date
+    }
+
     public SyntaxManager(){
         //getAllScriptTypes from apex;
         //voorbeeld van apex krijgen we : Oracle
@@ -61,5 +67,9 @@ public class SyntaxManager {
         if(ruleType.contains("CompareRule"))
            ruleType = "CompareRule";
         return syntaxMap.get(syntaxType).getConstraintTemplate(ruleType);
+    }
+
+    public DataType getDataType(String syntaxType, String datatype){
+        return syntaxMap.get(syntaxType).getDataType(datatype);
     }
 }
