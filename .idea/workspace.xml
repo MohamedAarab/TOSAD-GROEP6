@@ -31,7 +31,7 @@
       <file leaf-file-name="ConnectController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/task/ConnectController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="154">
               <caret line="77" column="57" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="57" />
               <folding />
             </state>
@@ -41,8 +41,8 @@
       <file leaf-file-name="TargetDatabaseServiceImp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/domain/targetDatabase/TargetDatabaseServiceImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="41" column="46" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
+            <state relative-caret-position="119">
+              <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -51,8 +51,8 @@
       <file leaf-file-name="ITargetDatabaseService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/domain/targetDatabase/ITargetDatabaseService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+            <state relative-caret-position="221">
+              <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,9 +139,9 @@
         <option value="$PROJECT_DIR$/src/main/java/infrastructure/SyntaxManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/infrastructure/TargetDatabaseDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/domain/targetDatabase/Attribute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/domain/targetDatabase/TargetDatabaseServiceImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/domain/targetDatabase/ITargetDatabaseService.java" />
         <option value="$PROJECT_DIR$/src/main/java/task/ConnectController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/domain/targetDatabase/TargetDatabaseServiceImp.java" />
       </list>
     </option>
   </component>
@@ -1024,7 +1024,7 @@
       <workItem from="1485628809192" duration="3144000" />
       <workItem from="1485719042939" duration="1377000" />
       <workItem from="1485783037473" duration="5595000" />
-      <workItem from="1485859000502" duration="1936000" />
+      <workItem from="1485859000502" duration="2492000" />
     </task>
     <task id="LOCAL-00001" summary="Added jetty resources and dependencies to run on linux commandline">
       <created>1485187699666</created>
@@ -1103,11 +1103,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485792273303</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added restservice to remove database">
+      <created>1485866415166</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1485866415166</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101683000" />
+    <option name="totallyTimeSpent" value="102239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1612" height="876" extended-state="0" />
@@ -1166,7 +1173,8 @@
     <MESSAGE value="Fixed execution bug" />
     <MESSAGE value="added errormessage for connecting with targetdatabase" />
     <MESSAGE value="added restservice to get datatype of an attribute" />
-    <option name="LAST_COMMIT_MESSAGE" value="added restservice to get datatype of an attribute" />
+    <MESSAGE value="added restservice to remove database" />
+    <option name="LAST_COMMIT_MESSAGE" value="added restservice to remove database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1479,8 +1487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/domain/targetDatabase/ITargetDatabaseService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+        <state relative-caret-position="221">
+          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1489,15 +1497,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/domain/targetDatabase/TargetDatabaseServiceImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="41" column="46" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
+        <state relative-caret-position="119">
+          <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/task/ConnectController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="154">
           <caret line="77" column="57" selection-start-line="77" selection-start-column="57" selection-end-line="77" selection-end-column="57" />
           <folding />
         </state>

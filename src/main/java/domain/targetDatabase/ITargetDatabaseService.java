@@ -17,5 +17,5 @@ public interface ITargetDatabaseService {
     List<TargetDatabase> getTargetDatabases();
     String executeScript(String host, String triggerCode);
     SyntaxManager.DataType getDatabaseTypeFromAttribute(String host, String schemeName, String tableName, String attributeName);
-    void removeTargetDatabase(String host);
+    int removeTargetDatabase(String host);
 }

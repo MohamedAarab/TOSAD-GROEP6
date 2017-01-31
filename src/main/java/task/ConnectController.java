@@ -95,7 +95,10 @@ public class ConnectController implements IConnectController {
 
     @GET
     @Path("/remove/{targetURL}")
-    public void removeTargetDatabase(@PathParam("targetURL") String host){
-        targetDatabaseService.removeTargetDatabase(host);
+    @Produces("application/json")
+    public String removeTargetDatabase(@PathParam("targetURL") String host){
+        JsonObjectBuilder job = Json.createObjectBuilder();
+        job.add("Amount of targetdatabases connected", targetDatabaseService.removeTargetDatabase(host));
+        return job.build().toString();
     }
 }

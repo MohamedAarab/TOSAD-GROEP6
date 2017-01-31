@@ -79,9 +79,10 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public void removeTargetDatabase(String host) {
+    public int removeTargetDatabase(String host) {
         try{
             targetDatabases.remove(getTargetDatabaseByHost(host));
         } catch (NullPointerException e){};
+        return targetDatabases.size();
     }
 }
