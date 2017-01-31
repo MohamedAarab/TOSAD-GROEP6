@@ -2,10 +2,22 @@ package infrastructure;
 
 import domain.businessRule.StringTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by lucas on 31-1-2017.
  */
 public class OracleSyntax implements IDatabaseSyntax {
+    private Map<String, StringTemplate> constraintTemplates ;
+
+    public OracleSyntax(){
+        constraintTemplates = new HashMap<String, StringTemplate>();
+        constraintTemplates.put("CompareRule", new StringTemplate("$firstAttribute$ $operator$ $comparevalue$;"));
+        constraintTemplates.put("ListRule", new StringTemplate("$firstAttribute$ $operator$ $listValue$;"));
+        constraintTemplates.put("AttributeRangeRule", new StringTemplate("$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
+    }
+
     @Override
     public StringTemplate getTriggerTemplate() {
         return new StringTemplate("CREATE OR REPLACE TRIGGER $trigger_name$\n"+
