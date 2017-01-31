@@ -29,7 +29,12 @@ public class ConnectController implements IConnectController {
         try{
             targetDatabaseService.connectToDatabase(databaseType,host,port,databaseName,username,password);
         } catch (Exception e){
-            job.add("succes", "Cannot connect to targetdatabase");
+            System.out.println(e.getMessage());
+            if(e.getMessage().contains("Access denied"))
+                job.add("succes", "Access denied; Possible reason wrong username or password");
+            else
+                job.add("succes", "Cannot connect to targetdatabase");
+
         }
         if(targetDatabaseService.getTargetDatabaseByHost(host, databaseName) != null)
             job.add("succes", "true");

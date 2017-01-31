@@ -23,14 +23,14 @@ public class MySQLSyntax implements IDatabaseSyntax {
     public StringTemplate getTriggerTemplate() {
         return new StringTemplate(//"DELIMITER ** "+
                 //"DROP TRIGGER IF EXISTS $trigger_name$; ** " +
-                "CREATE TRIGGER $trigger_name$ " +
-                "before $trigger_event$ ON $table_name$ " +
-                "FOR EACH ROW " +
-                "BEGIN " +
-                "   DECLARE l_passed BOOLEAN DEFAULT FALSE; " +
-                "   set l_passed = $constraint$ " +
-                "   if l_passed = false then " +
-                "        signal sqlstate '45000' set message_text = '$error_message$'; " +
+                "CREATE TRIGGER $trigger_name$ \n" +
+                "before $trigger_event$ ON $table_name$ \n" +
+                "FOR EACH ROW \n" +
+                "BEGIN \n" +
+                "   DECLARE l_passed BOOLEAN DEFAULT FALSE; \n" +
+                "   set l_passed = $constraint$ \n" +
+                "   if l_passed = false then \n" +
+                "        signal sqlstate '45000' set message_text = '$error_message$'; \n" +
                 "   end if; " +
                 "END;");
     }
