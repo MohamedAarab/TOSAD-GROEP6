@@ -21,7 +21,7 @@ public class ConnectController implements IConnectController {
     TargetDatabaseServiceImp targetDatabaseService = TargetDatabaseServiceImp.getInstance() ;
 
     @GET
-    @Path("/connect/{targetURL}/{port}/{databaseName}/{databaseType}/{username}/{password}")
+    @Path("/connect/{targetURL}/{databaseName}/{port}/{databaseName}/{databaseType}/{username}/{password}")
     @Produces("application/json")
     @Override
     public String connectToDatabase(@PathParam("targetURL") String host, @PathParam("port") int port, @PathParam("databaseName") String databaseName, @PathParam("databaseType") String databaseType, @PathParam("username") String username, @PathParam("password") String password) {
@@ -31,20 +31,20 @@ public class ConnectController implements IConnectController {
         } catch (Exception e){
            job.add("succes", "Cannot connect to targetdatabase");
         }
-        if(targetDatabaseService.getTargetDatabaseByHost(host) != null)
+        if(targetDatabaseService.getTargetDatabaseByHost(host, databaseName) != null)
             job.add("succes", "true");
         return job.build().toString();
     }
 
     @GET
-    @Path("/schemes/{targetURL}")
+    @Path("/schemes/{targetURL}/{databaseName}")
     @Produces("application/json")
-    public String getAllSchemesFromDatabase(@PathParam("targetURL") String host){
+    public String getAllSchemesFromDatabase(@PathParam("targetURL") String host, @PathParam("databaseName") String databaseName){
         List<Scheme> schemes = null;
         JsonObjectBuilder job = Json.createObjectBuilder();
         JsonArrayBuilder jab = Json.createArrayBuilder();
         try {
-            schemes = targetDatabaseService.getAllSchemes(host);
+            schemes = targetDatabaseService.getAllSchemes(host,databaseName);
             for(Scheme scheme : schemes){
                 jab.add(scheme.getName());
             }
@@ -56,10 +56,10 @@ public class ConnectController implements IConnectController {
     }
 
     @GET
-    @Path("/tables/{targetURL}/{schemeName}")
+    @Path("/tables/{targetURL}/{databaseName}/{schemeName}")
     @Produces("application/json")
-    public String getAllTablesFromDatabaseScheme(@PathParam("targetURL") String host, @PathParam("schemeName") String schemeName){
-        List<Table> tables = targetDatabaseService.getTablesFromScheme(host, schemeName);
+    public String getAllTablesFromDatabaseScheme(@PathParam("targetURL") String host, @PathParam("databaseName") String databaseName, @PathParam("schemeName") String schemeName){
+        List<Table> tables = targetDatabaseService.getTablesFromScheme(host,databaseName, schemeName);
         JsonObjectBuilder job = Json.createObjectBuilder();
         JsonArrayBuilder jab = Json.createArrayBuilder();
         for(Table table : tables){
@@ -70,10 +70,10 @@ public class ConnectController implements IConnectController {
     }
 
     @GET
-    @Path("/attributes/{targetURL}/{schemeName}/{tableName}")
+    @Path("/attributes/{targetURL}/{databaseName}/{schemeName}/{tableName}")
     @Produces("application/json")
-    public String getAllAttributesFromTable(@PathParam("targetURL") String host, @PathParam("schemeName") String schemeName, @PathParam("tableName") String tableName){
-        List<Attribute> attributes = targetDatabaseService.getAttributesFromTable(host,schemeName,tableName);
+    public String getAllAttributesFromTable(@PathParam("targetURL") String host, @PathParam("databaseName") String databaseName, @PathParam("schemeName") String schemeName, @PathParam("tableName") String tableName){
+        List<Attribute> attributes = targetDatabaseService.getAttributesFromTable(host,databaseName,schemeName,tableName);
         JsonObjectBuilder job = Json.createObjectBuilder();
         JsonArrayBuilder jab = Json.createArrayBuilder();
         for(Attribute attribute : attributes){
@@ -84,21 +84,21 @@ public class ConnectController implements IConnectController {
     }
 
     @GET
-    @Path("/attributetype/{targetURL}/{schemeName}/{tableName}/{attributeName}")
+    @Path("/attributetype/{targetURL}/{databaseName}/{schemeName}/{tableName}/{attributeName}")
     @Produces("application/json")
-    public String getDatabaseTypeFromAttribute(@PathParam("targetURL") String host, @PathParam("schemeName") String schemeName, @PathParam("tableName") String tableName, @PathParam("attributeName") String attributeName){
-        SyntaxManager.DataType dataType = targetDatabaseService.getDatabaseTypeFromAttribute(host, schemeName, tableName, attributeName);
+    public String getDatabaseTypeFromAttribute(@PathParam("targetURL") String host, @PathParam("databaseName") String databaseName, @PathParam("schemeName") String schemeName, @PathParam("tableName") String tableName, @PathParam("attributeName") String attributeName){
+        SyntaxManager.DataType dataType = targetDatabaseService.getDatabaseTypeFromAttribute(host, databaseName, schemeName, tableName, attributeName);
         JsonObjectBuilder job = Json.createObjectBuilder();
         job.add("datatype", dataType.toString());
         return job.build().toString();
     }
 
     @GET
-    @Path("/remove/{targetURL}")
+    @Path("/remove/{targetURL}/{databaseName}")
     @Produces("application/json")
-    public String removeTargetDatabase(@PathParam("targetURL") String host){
+    public String removeTargetDatabase(@PathParam("targetURL") String host, @PathParam("databaseName") String databaseName){
         JsonObjectBuilder job = Json.createObjectBuilder();
-        job.add("Amount of targetdatabases connected", targetDatabaseService.removeTargetDatabase(host));
+        job.add("Amount of targetdatabases connected", targetDatabaseService.removeTargetDatabase(host, databaseName));
         return job.build().toString();
     }
 }

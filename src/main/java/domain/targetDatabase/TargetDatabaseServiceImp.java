@@ -22,23 +22,23 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public List<Scheme> getAllSchemes(String host) throws NullPointerException {
-        return getTargetDatabaseByHost(host).getSchemes();
+    public List<Scheme> getAllSchemes(String host, String databaseName) throws NullPointerException {
+        return getTargetDatabaseByHost(host, databaseName).getSchemes();
     }
 
     @Override
-    public List<Table> getTablesFromScheme(String host, String schemeName) throws NullPointerException{
-        return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTables();
+    public List<Table> getTablesFromScheme(String host, String dataName, String schemeName) throws NullPointerException{
+        return getTargetDatabaseByHost(host, dataName).getSchemeByName(schemeName).getTables();
     }
 
     @Override
-    public List<Attribute> getAttributesFromTable(String host, String schemeName, String tableName) throws NullPointerException {
-        return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTableByName(tableName).getAttributes();
+    public List<Attribute> getAttributesFromTable(String host, String databaseName, String schemeName, String tableName) throws NullPointerException {
+        return getTargetDatabaseByHost(host, databaseName).getSchemeByName(schemeName).getTableByName(tableName).getAttributes();
     }
 
     @Override
     public void connectToDatabase(String type, String host, int port, String databaseName, String username, String password) throws NullPointerException {
-        removeTargetDatabase(host);
+        removeTargetDatabase(host, databaseName);
         addTargetDatabase(daoService.connectToDatabase(type, host, port, databaseName, username,password));
     }
 
@@ -48,9 +48,9 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public TargetDatabase getTargetDatabaseByHost(String host) throws NullPointerException {
+    public TargetDatabase getTargetDatabaseByHost(String host, String databaseName) throws NullPointerException {
         for(TargetDatabase targetDatabase : getTargetDatabases()){
-            if(targetDatabase.getHost().equals(host))
+            if(targetDatabase.getHost().equals(host) && targetDatabase.getName().equals(databaseName))
                 return targetDatabase;
         }
         return null;
@@ -68,20 +68,20 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     }
 
     @Override
-    public String executeScript(String host, String triggerCode) {
-        TargetDatabase targetDatabase = getTargetDatabaseByHost(host);
+    public String executeScript(String host, String databaseName, String triggerCode) {
+        TargetDatabase targetDatabase = getTargetDatabaseByHost(host, databaseName);
         return daoService.executeScript(targetDatabase.getType(),targetDatabase.getHost(), targetDatabase.getPort(), targetDatabase.getName(), targetDatabase.getUsername(),targetDatabase.getPassword(), triggerCode);
     }
 
     @Override
-    public SyntaxManager.DataType getDatabaseTypeFromAttribute(String host, String schemeName, String tableName, String attributeName) {
-        return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTableByName(tableName).getAttributeByName(attributeName).getType();
+    public SyntaxManager.DataType getDatabaseTypeFromAttribute(String host, String databaseName, String schemeName, String tableName, String attributeName) {
+        return getTargetDatabaseByHost(host,databaseName).getSchemeByName(schemeName).getTableByName(tableName).getAttributeByName(attributeName).getType();
     }
 
     @Override
-    public int removeTargetDatabase(String host) {
+    public int removeTargetDatabase(String host, String databaseName) {
         try{
-            targetDatabases.remove(getTargetDatabaseByHost(host));
+            targetDatabases.remove(getTargetDatabaseByHost(host, databaseName));
         } catch (NullPointerException e){};
         return targetDatabases.size();
     }
