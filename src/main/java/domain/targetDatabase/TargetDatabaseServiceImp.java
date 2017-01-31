@@ -38,6 +38,7 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
 
     @Override
     public void connectToDatabase(String type, String host, int port, String databaseName, String username, String password) throws NullPointerException {
+        removeTargetDatabase(host);
         addTargetDatabase(daoService.connectToDatabase(type, host, port, databaseName, username,password));
     }
 
@@ -75,5 +76,12 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     @Override
     public SyntaxManager.DataType getDatabaseTypeFromAttribute(String host, String schemeName, String tableName, String attributeName) {
         return getTargetDatabaseByHost(host).getSchemeByName(schemeName).getTableByName(tableName).getAttributeByName(attributeName).getType();
+    }
+
+    @Override
+    public void removeTargetDatabase(String host) {
+        try{
+            targetDatabases.remove(getTargetDatabaseByHost(host));
+        } catch (NullPointerException e){};
     }
 }

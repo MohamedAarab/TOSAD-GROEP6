@@ -92,4 +92,10 @@ public class ConnectController implements IConnectController {
         job.add("datatype", dataType.toString());
         return job.build().toString();
     }
+
+    @GET
+    @Path("/remove/{targetURL}")
+    public void removeTargetDatabase(@PathParam("targetURL") String host){
+        targetDatabaseService.removeTargetDatabase(host);
+    }
 }
