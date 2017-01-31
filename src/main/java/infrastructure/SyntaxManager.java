@@ -55,7 +55,7 @@ public class SyntaxManager {
         return syntaxMap.get(type).getTables();
     }
 
-    public StringTemplate getSchemesTemplate(String type) {
+    public String getSchemesTemplate(String type) {
         return syntaxMap.get(type).getSchemes();
     }
 
@@ -71,5 +71,13 @@ public class SyntaxManager {
 
     public DataType getDataType(String syntaxType, String datatype){
         return syntaxMap.get(syntaxType).getDataType(datatype);
+    }
+
+    public String getJDBCUrl(String syntaxType){
+        return syntaxMap.get(syntaxType).getJDBCUrl();
+    }
+
+    public String getDriverPath(String syntaxType){
+        return syntaxMap.get(syntaxType).getDriverPath();
     }
 }

@@ -9,8 +9,10 @@ import domain.businessRule.StringTemplate;
 public interface IDatabaseSyntax {
     StringTemplate getTriggerTemplate();
     StringTemplate getTables();
-    StringTemplate getSchemes();
+    String getSchemes();
     StringTemplate getAttributes();
     StringTemplate getConstraintTemplate(String ruleType);
     SyntaxManager.DataType getDataType(String dataTypeIN);
+    String getJDBCUrl();
+    String getDriverPath();
 }

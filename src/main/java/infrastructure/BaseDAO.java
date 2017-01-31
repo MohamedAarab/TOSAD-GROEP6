@@ -17,6 +17,7 @@ public class BaseDAO {
     private String targetPassword;
     private String targetUrl;
     private String databaseName;
+    private SyntaxManager syntaxManager = SyntaxManager.getInstance();
 
     public BaseDAO(String databaseType, String targetUsername, String targetPassword, String targetUrl, String databaseName, int port) {
         this.databaseType = databaseType;
@@ -30,8 +31,8 @@ public class BaseDAO {
     protected final Connection getConnection() {
         Connection result = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            result = DriverManager.getConnection("jdbc:"+databaseType.toLowerCase()+ "://"+this.targetUrl +":" + this.port + "/" + this.databaseName , this.targetUsername, this.targetPassword);
+            Class.forName(syntaxManager.getDriverPath(databaseType));
+            result = DriverManager.getConnection(syntaxManager.getJDBCUrl(databaseType)+this.targetUrl +":" + this.port + "/" + this.databaseName , this.targetUsername, this.targetPassword);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }

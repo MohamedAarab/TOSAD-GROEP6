@@ -37,7 +37,8 @@ public class TargetDatabaseDAO extends BaseDAO {
     public List<Scheme> getSchemes(){
         List<Scheme> schemes = new ArrayList<Scheme>();
         try(Connection conn = super.getConnection()){
-            ResultSet result = conn.getMetaData().getCatalogs();
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(syntaxManager.getSchemesTemplate(getDatabaseType()));
             while(result.next()){
                 schemes.add(new Scheme(result.getString(1)));
             }
