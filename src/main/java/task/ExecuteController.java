@@ -15,10 +15,10 @@ public class ExecuteController implements IExecuteController {
     @POST
     @Produces("application/json")
     @Override
-    public String executeScript(@FormParam("host") String host, @FormParam("triggerCode") String triggerCode) {
+    public String executeScript(@FormParam("host") String host, @FormParam("databaseName") String databaseName, @FormParam("triggerCode") String triggerCode) {
         ITargetDatabaseService targetDatabaseService = TargetDatabaseServiceImp.getInstance();
         JsonObjectBuilder job = Json.createObjectBuilder();
-        job.add("message", targetDatabaseService.executeScript(host, triggerCode));
+        job.add("message", targetDatabaseService.executeScript(host, databaseName, triggerCode));
         return job.build().toString();
     }
 }

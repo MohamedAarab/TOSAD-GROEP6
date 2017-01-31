@@ -22,7 +22,7 @@ public class Main {
         targetDatabaseService.connectToDatabase("MySQL", host, "advertmedi_tos","advertmedi_tos", "07yomnM4");*/
         String host = "mysql4.gear.host";
         targetDatabaseService.connectToDatabase("MySQL", host, 3306, "test67", "admin12", "admin12!");
-        for(Scheme s : targetDatabaseService.getAllSchemes(host)){
+        for(Scheme s : targetDatabaseService.getAllSchemes(host, "test67")){
             System.out.println(s.toString());
         }
         System.out.println("Duration: " + (System.currentTimeMillis() - start));
@@ -30,6 +30,6 @@ public class Main {
         String code = generateController.generateCode("med_id_br","update", "MySQL");
         code = code.substring(9,code.length()-2);
         ExecuteController executeController = new ExecuteController();
-        System.out.println(executeController.executeScript(host, code));
+        System.out.println(executeController.executeScript(host, "test67", code));
     }
 }
