@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="37bafe52-47d6-4d66-af0d-8d691670eeb5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/task/ExecuteController.java" afterPath="$PROJECT_DIR$/src/main/java/task/ExecuteController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/task/IExecuteController.java" afterPath="$PROJECT_DIR$/src/main/java/task/IExecuteController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/task/Main.java" afterPath="$PROJECT_DIR$/src/main/java/task/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/task/ConnectController.java" afterPath="$PROJECT_DIR$/src/main/java/task/ConnectController.java" />
     </list>
     <ignored path="TOSAD-GROEP6.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnectController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConnectController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/task/ConnectController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -58,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/task/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+            <state relative-caret-position="306">
+              <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -168,10 +166,10 @@
         <option value="$PROJECT_DIR$/src/main/java/domain/targetDatabase/Attribute.java" />
         <option value="$PROJECT_DIR$/src/main/java/domain/targetDatabase/ITargetDatabaseService.java" />
         <option value="$PROJECT_DIR$/src/main/java/domain/targetDatabase/TargetDatabaseServiceImp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/task/ConnectController.java" />
         <option value="$PROJECT_DIR$/src/main/java/task/ExecuteController.java" />
         <option value="$PROJECT_DIR$/src/main/java/task/IExecuteController.java" />
         <option value="$PROJECT_DIR$/src/main/java/task/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/task/ConnectController.java" />
       </list>
     </option>
   </component>
@@ -190,7 +188,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="width" value="1612" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -1054,7 +1053,7 @@
       <workItem from="1485628809192" duration="3144000" />
       <workItem from="1485719042939" duration="1377000" />
       <workItem from="1485783037473" duration="5595000" />
-      <workItem from="1485859000502" duration="4105000" />
+      <workItem from="1485859000502" duration="5020000" />
     </task>
     <task id="LOCAL-00001" summary="Added jetty resources and dependencies to run on linux commandline">
       <created>1485187699666</created>
@@ -1154,14 +1153,21 @@
       <option name="project" value="LOCAL" />
       <updated>1485868466774</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fixed errors">
+      <created>1485868644424</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1485868644424</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103852000" />
+    <option name="totallyTimeSpent" value="104767000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1612" height="876" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1174,11 +1180,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20871863" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29765013" sideWeight="0.495" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29765013" sideWeight="0.495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23182957" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1220,7 +1226,8 @@
     <MESSAGE value="added restservice to remove database" />
     <MESSAGE value="added return for restservice to remove database" />
     <MESSAGE value="added databaseName to all functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added databaseName to all functions" />
+    <MESSAGE value="fixed errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1524,14 +1531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/task/ConnectController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/task/ExecuteController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1550,8 +1549,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/task/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+        <state relative-caret-position="306">
+          <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/task/ConnectController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
           <folding />
         </state>
       </provider>

@@ -21,7 +21,7 @@ public class ConnectController implements IConnectController {
     TargetDatabaseServiceImp targetDatabaseService = TargetDatabaseServiceImp.getInstance() ;
 
     @GET
-    @Path("/connect/{targetURL}/{databaseName}/{port}/{databaseName}/{databaseType}/{username}/{password}")
+    @Path("/connect/{targetURL}/{port}/{databaseName}/{databaseType}/{username}/{password}")
     @Produces("application/json")
     @Override
     public String connectToDatabase(@PathParam("targetURL") String host, @PathParam("port") int port, @PathParam("databaseName") String databaseName, @PathParam("databaseType") String databaseType, @PathParam("username") String username, @PathParam("password") String password) {
