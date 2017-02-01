@@ -54,7 +54,7 @@ public class OracleSyntax implements IDatabaseSyntax {
 
     @Override
     public StringTemplate getConstraintTemplate(String ruleType) {
-        return null;
+        return constraintTemplates.get(ruleType);
     }
 
     @Override

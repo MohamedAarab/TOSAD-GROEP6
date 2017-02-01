@@ -21,11 +21,6 @@ public class SyntaxManager {
     }
 
     public SyntaxManager(){
-        //getAllScriptTypes from apex;
-        //voorbeeld van apex krijgen we : Oracle
-        //instantiate Class met naam Oracle+Syntax
-        //voeg nieuwe Class aan syntaxMap toe met als key Oracle
-        //String scriptType = "MySQL";
         try {
             List<String> databaseTypes = new ToolDatabaseConnection().getAllDatabaseTypes();
             for(String scriptType : databaseTypes){
