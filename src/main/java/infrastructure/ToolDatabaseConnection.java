@@ -83,9 +83,10 @@ public class ToolDatabaseConnection {
             Object dateObject = (((JsonObject) jay.get(i)).get("date_value"));
             if(numObject != null)
                 definition.setValue(Double.parseDouble(numObject.toString()));
-            else if (stringObject != null)
-                definition.setValue(stringObject.toString());
-            else if(dateObject != null) {
+            else if (stringObject != null) {
+                String st = stringObject.toString().substring(1, stringObject.toString().length() -1);
+                definition.setValue(st.toString());
+            } else if(dateObject != null) {
                 DateFormat format = new SimpleDateFormat("DD-MM-YYYY", Locale.ENGLISH);
                 try {
                     definition.setValue(format.parse(dateObject.toString()));

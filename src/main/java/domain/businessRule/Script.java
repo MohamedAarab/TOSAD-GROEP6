@@ -36,7 +36,7 @@ public class Script {
         if(constraintTemplate.getAllAttributes().contains("listValue")){
             String listValue = "(";
             for (Definition definition : businessRule.getDefinitions()) {
-                listValue += definition.getValue() + ", ";
+                listValue += "'" + definition.getValue() + "', ";
             }
             listValue = listValue.substring(0, listValue.length() -2);
             listValue += ")";
