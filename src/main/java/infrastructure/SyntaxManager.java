@@ -33,7 +33,6 @@ public class SyntaxManager {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        //wanneer methodes worden aangeroepen, Altijd SyntaxManager.getInstance() en dan de gewenste methode.
     }
 
     public static SyntaxManager getInstance(){

@@ -90,5 +90,4 @@ public class TargetDatabaseServiceImp implements ITargetDatabaseService {
     public boolean checkConnection(String type, String host, int port, String databaseName, String username, String password) {
         return daoService.checkConnection(type, host, port, databaseName, username, password);
     }
-
 }

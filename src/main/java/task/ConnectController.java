@@ -43,6 +43,8 @@ public class ConnectController implements IConnectController {
             System.out.println(e.getMessage());
             if(e.getMessage().contains("Access denied"))
                 job.add("succes", "Access denied; Possible reason wrong username or password");
+            else if (e.getMessage().contains("ORA-01017"))
+                job.add("succes", "invalid username/password; logon denied");
             else
                 job.add("succes", "Cannot connect to targetdatabase");
             return job.build().toString();
