@@ -27,7 +27,7 @@ public class OracleSyntax implements IDatabaseSyntax {
                 "DECLARE \n"+
                 "   l_passed boolean := false; \n"+
                 "BEGIN \n"+
-                "   $trigger_code$ \n"+
+                "   l_passed := $constraint$ \n"+
                 "   if l_passed = false then \n "+
                 "      raise_application_error(-20000, \'$error_message$\'); \n"+
                 "   end if; \n"+
