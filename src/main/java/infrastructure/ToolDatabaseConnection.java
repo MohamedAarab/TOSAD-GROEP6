@@ -14,8 +14,12 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by lucas on 26-1-2017.
@@ -74,13 +78,20 @@ public class ToolDatabaseConnection {
         while(i <jay.size()){
             Definition definition = new Definition();
             definition.setName(((JsonObject)jay.get(i)).getString("name"));
-            definition.setValue(
-                    Double.parseDouble((((JsonObject) jay.get(i)).get("numeric_value")).toString())
-            );
-            if(definition.getValue() == null) {
-                definition.setValue(
-                        (((JsonObject) jay.get(i)).get("string_value")).toString()
-                );
+            Object numObject = (((JsonObject) jay.get(i)).get("numeric_value"));
+            Object stringObject = (((JsonObject) jay.get(i)).get("string_value"));
+            Object dateObject = (((JsonObject) jay.get(i)).get("date_value"));
+            if(numObject != null)
+                definition.setValue(Double.parseDouble(numObject.toString()));
+            else if (stringObject != null)
+                definition.setValue(stringObject.toString());
+            else if(dateObject != null) {
+                DateFormat format = new SimpleDateFormat("DD-MM-YYYY", Locale.ENGLISH);
+                try {
+                    definition.setValue(format.parse(dateObject.toString()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
             definitions.add(definition);
             i++;

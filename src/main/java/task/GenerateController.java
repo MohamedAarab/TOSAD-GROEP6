@@ -18,10 +18,10 @@ import java.util.List;
  */
 @Path("/generate")
 public class GenerateController implements IGenerateController {
-    @Path("/{businessRuleName}/{eventList}/{scriptType}")
+    @Path("/{businessRuleName}/{eventList}/{scriptType}/{scriptName}")
     @GET
     @Override
-    public String generateCode(@PathParam("businessRuleName") String businessRuleName, @PathParam("eventList") String eventList,@PathParam("scriptType") String scriptType) {
+    public String generateCode(@PathParam("businessRuleName") String businessRuleName, @PathParam("eventList") String eventList,@PathParam("scriptType") String scriptType, @PathParam("scriptName") String scriptName) {
         IBusinessRuleService businessRuleService = new BusinessRuleServiceImp();
         BusinessRule businessRule = businessRuleService.createBusinessRuleForCode(businessRuleName);
         List<String> events = new ArrayList<String>();
@@ -29,7 +29,7 @@ public class GenerateController implements IGenerateController {
             events.add(s);
         }
         JsonObjectBuilder job = Json.createObjectBuilder();
-        job.add("code",businessRuleService.generateCode(businessRule, events, scriptType, businessRuleService.getTableNameFromBusinessRule(businessRuleName)));
+        job.add("code",businessRuleService.generateCode(businessRule, events, scriptType, scriptName, businessRuleService.getTableNameFromBusinessRule(businessRuleName)));
         return job.build().toString();
     }
 }

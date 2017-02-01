@@ -46,7 +46,7 @@ public class MySQLSyntax implements IDatabaseSyntax {
             return SyntaxManager.DataType.numeric;
         } else if(dataTypeIN.contains("varchar")){
             return SyntaxManager.DataType.text;
-        } else if(dataTypeIN.contains("datetime")){
+        } else if(dataTypeIN.toLowerCase().contains("date")){
             return SyntaxManager.DataType.date;
         }
         return null;

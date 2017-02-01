@@ -27,7 +27,7 @@ public class Main {
         }
         System.out.println("Duration: " + (System.currentTimeMillis() - start));
         GenerateController generateController = new GenerateController();
-        String code = generateController.generateCode("med_id_br","update", "MySQL");
+        String code = generateController.generateCode("med_id_br","update", "MySQL", "name");
         code = code.substring(9,code.length()-2);
         ExecuteController executeController = new ExecuteController();
         System.out.println(executeController.executeScript(host, "test67", code));

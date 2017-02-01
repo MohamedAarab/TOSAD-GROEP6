@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface IBusinessRuleService {
     BusinessRule createBusinessRuleForCode(String businessRuleName);
-    String generateCode(BusinessRule businessRule, List<String> eventList, String scriptType, String tableName);
+    String generateCode(BusinessRule businessRule, List<String> eventList, String scriptType, String scriptName, String tableName);
     String getTableNameFromBusinessRule(String businessRuleName);
 }

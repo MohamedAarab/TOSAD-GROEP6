@@ -27,10 +27,9 @@ public class BusinessRuleServiceImp implements IBusinessRuleService {
     }
 
     @Override
-    public String generateCode(BusinessRule businessRule, List<String> eventList, String scriptType, String tableName) {
+    public String generateCode(BusinessRule businessRule, List<String> eventList, String scriptType, String scriptName, String tableName) {
         businessRule.getName();
-        // TODO: 28-1-2017  generate name
-        String code = new Script("scriptName", eventList,businessRule).generate(tableName, scriptType);
+        String code = new Script(scriptName, eventList,businessRule).generate(tableName, scriptType);
         return code;
     }
 
