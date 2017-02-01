@@ -15,7 +15,7 @@ public class MySQLSyntax implements IDatabaseSyntax {
     public MySQLSyntax(){
         constraintTemplates = new HashMap<String, StringTemplate>();
         constraintTemplates.put("CompareRule", new StringTemplate("new.$firstAttribute$ $operator$ $comparevalue$;"));
-        constraintTemplates.put("ListRule", new StringTemplate("new.$firstAttribute$ $operator$ $listValue$;"));
+        constraintTemplates.put("AttributeListRule", new StringTemplate("new.$firstAttribute$ $operator$ $listValue$;"));
         constraintTemplates.put("AttributeRangeRule", new StringTemplate("new.$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
     }
 

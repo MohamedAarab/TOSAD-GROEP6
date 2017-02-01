@@ -32,8 +32,19 @@ public class Script {
         triggerTemplate.setAttribute("trigger_event", triggerEvent.get(0));
         triggerTemplate.setAttribute("table_name", tableName);
         triggerTemplate.setAttribute("error_message", businessRule.getErrorMessage());
-        for(Definition definition : businessRule.getDefinitions()){
-            constraintTemplate.setAttribute(definition.getName(), definition.getValue().toString());
+        StringTemplate listTemplate = new StringTemplate("($listvalues$)");
+        if(constraintTemplate.getAllAttributes().contains("listValue")){
+            String listValue = "(";
+            for (Definition definition : businessRule.getDefinitions()) {
+                listValue += definition.getValue() + ", ";
+            }
+            listValue = listValue.substring(0, listValue.length() -2);
+            listValue += ")";
+            constraintTemplate.setAttribute("listValue", listValue);
+        } else {
+            for (Definition definition : businessRule.getDefinitions()) {
+                constraintTemplate.setAttribute(definition.getName(), definition.getValue().toString());
+            }
         }
         constraintTemplate.setAttribute("operator", businessRule.getOperator().getOperator());
         constraintTemplate.setAttribute("firstAttribute", businessRule.getFirstAttribute().getName());

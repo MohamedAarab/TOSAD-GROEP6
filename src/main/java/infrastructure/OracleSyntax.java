@@ -14,7 +14,7 @@ public class OracleSyntax implements IDatabaseSyntax {
     public OracleSyntax(){
         constraintTemplates = new HashMap<String, StringTemplate>();
         constraintTemplates.put("CompareRule", new StringTemplate("$firstAttribute$ $operator$ $comparevalue$;"));
-        constraintTemplates.put("ListRule", new StringTemplate("$firstAttribute$ $operator$ $listValue$;"));
+        constraintTemplates.put("AttributeListRule", new StringTemplate("$firstAttribute$ $operator$ $listValue$;"));
         constraintTemplates.put("AttributeRangeRule", new StringTemplate("$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
     }
 

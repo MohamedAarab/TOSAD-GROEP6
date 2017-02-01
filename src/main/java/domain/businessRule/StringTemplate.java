@@ -43,14 +43,4 @@ public class StringTemplate {
         }
         return string;
     }
-
-    public static void main(String[] args) {
-        StringTemplate stringTemplate = new StringTemplate("$firstAttribute$ $operator$ $comparevalue$;");
-        stringTemplate.setAttribute("firstAttribute", "hoi");
-        stringTemplate.setAttribute("firstAttribute", "hallo!");
-        stringTemplate.setAttribute("noob", "hi");
-        System.out.println(stringTemplate);
-        //stringTemplate.getAllAttributes();
-    }
-
 }
