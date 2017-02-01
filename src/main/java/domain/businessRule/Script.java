@@ -39,14 +39,13 @@ public class Script {
         if(constraintTemplate.getAllAttributes().contains("listValue")){
             String listValue = "(";
             for (Definition definition : businessRule.getDefinitions()) {
-                listValue += "'";
                 if(definition.getValue() instanceof Date) {
                     StringTemplate toDate = SyntaxManager.getInstance().getToDateTemplate(scriptType);
-                    toDate.setAttribute("date", definition.getValue().toString());
+                    toDate.setAttribute("date", formatter.format(definition.getValue()));
                     listValue += toDate.toString();
                 } else
-                    listValue += definition.getValue();
-                listValue += "', ";
+                    listValue += "'" + definition.getValue() + "'";
+                listValue += ", ";
             }
             listValue = listValue.substring(0, listValue.length() -2);
             listValue += ")";
