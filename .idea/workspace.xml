@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="37bafe52-47d6-4d66-af0d-8d691670eeb5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/domain/targetDatabase/ITargetDatabaseService.java" afterPath="$PROJECT_DIR$/src/main/java/domain/targetDatabase/ITargetDatabaseService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/domain/targetDatabase/TargetDatabaseServiceImp.java" afterPath="$PROJECT_DIR$/src/main/java/domain/targetDatabase/TargetDatabaseServiceImp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/infrastructure/DAOServiceImp.java" afterPath="$PROJECT_DIR$/src/main/java/infrastructure/DAOServiceImp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/infrastructure/IDAOService.java" afterPath="$PROJECT_DIR$/src/main/java/infrastructure/IDAOService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/infrastructure/TargetDatabaseDAO.java" afterPath="$PROJECT_DIR$/src/main/java/infrastructure/TargetDatabaseDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/task/ConnectController.java" afterPath="$PROJECT_DIR$/src/main/java/task/ConnectController.java" />
     </list>
     <ignored path="TOSAD-GROEP6.iws" />
@@ -56,8 +51,8 @@
       <file leaf-file-name="ConnectController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/task/ConnectController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+            <state relative-caret-position="299">
+              <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
               <folding>
                 <element signature="e#1323#1580#0" expanded="true" />
                 <element signature="e#1579#1580#0" expanded="true" />
@@ -1144,7 +1139,7 @@
       <workItem from="1485859000502" duration="11335000" />
       <workItem from="1485891605490" duration="8405000" />
       <workItem from="1485941652397" duration="8249000" />
-      <workItem from="1485953625414" duration="12857000" />
+      <workItem from="1485953625414" duration="13155000" />
     </task>
     <task id="LOCAL-00001" summary="Added jetty resources and dependencies to run on linux commandline">
       <created>1485187699666</created>
@@ -1342,11 +1337,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485976560320</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="added multi-threading for connecting">
+      <created>1485978318397</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1485978318397</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140593000" />
+    <option name="totallyTimeSpent" value="140891000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1394,7 +1396,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added rest service to:  interact with targetdatabase and generate script for a businessrule&#10;Removed Templates and Subtypes of script for a syntaxmanager which controls databasesyntaxes&#10;Added class to interact with the apex rest service" />
     <MESSAGE value="Created own StringTemplate" />
     <MESSAGE value="you can now execute scripts" />
     <MESSAGE value="You can now choose portnumber when connecting to targetdatabase" />
@@ -1419,7 +1420,8 @@
     <MESSAGE value="fixed integers in list" />
     <MESSAGE value="fixed comparevalues" />
     <MESSAGE value="little changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="little changes" />
+    <MESSAGE value="added multi-threading for connecting" />
+    <option name="LAST_COMMIT_MESSAGE" value="added multi-threading for connecting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1757,8 +1759,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/task/ConnectController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+        <state relative-caret-position="299">
+          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
           <folding>
             <element signature="e#1323#1580#0" expanded="true" />
             <element signature="e#1579#1580#0" expanded="true" />

@@ -45,7 +45,7 @@ public class ConnectController implements IConnectController {
                 job.add("succes", "Access denied; Possible reason wrong username or password");
             else
                 job.add("succes", "Cannot connect to targetdatabase");
-
+            return job.build().toString();
         }
         //if(targetDatabaseService.getTargetDatabaseByHost(host, databaseName) != null)
         job.add("succes",result);
