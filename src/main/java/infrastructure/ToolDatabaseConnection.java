@@ -78,6 +78,8 @@ public class ToolDatabaseConnection {
         while(i <jay.size()){
             Definition definition = new Definition();
             definition.setName(((JsonObject)jay.get(i)).getString("name"));
+            if(definition.getName().equals("secondAttribute"))
+                definition.setName("compareValue");
             Object numObject = (((JsonObject) jay.get(i)).get("numeric_value"));
             Object stringObject = (((JsonObject) jay.get(i)).get("string_value"));
             Object dateObject = (((JsonObject) jay.get(i)).get("date_value"));
