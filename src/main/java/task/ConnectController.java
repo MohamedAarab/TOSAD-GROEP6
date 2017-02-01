@@ -24,10 +24,21 @@ public class ConnectController implements IConnectController {
     @Path("/connect/{targetURL}/{port}/{databaseName}/{databaseType}/{username}/{password}")
     @Produces("application/json")
     @Override
-    public String connectToDatabase(@PathParam("targetURL") String host, @PathParam("port") int port, @PathParam("databaseName") String databaseName, @PathParam("databaseType") String databaseType, @PathParam("username") String username, @PathParam("password") String password) {
+    public String connectToDatabase(@PathParam("targetURL") final String host, @PathParam("port") final int port, @PathParam("databaseName") final String databaseName, @PathParam("databaseType") final String databaseType, @PathParam("username") final String username, @PathParam("password") final String password) {
         JsonObjectBuilder job = Json.createObjectBuilder();
+        boolean result = false;
         try{
-            targetDatabaseService.connectToDatabase(databaseType,host,port,databaseName,username,password);
+            result = targetDatabaseService.checkConnection(databaseType,host,port,databaseName,username,password);
+            if(result) {
+                Thread thread = new Thread(new Runnable()
+                {
+                    public void run()
+                    {
+                        targetDatabaseService.connectToDatabase(databaseType, host, port, databaseName, username, password);
+                    }
+                });
+                thread.start();
+            }
         } catch (Exception e){
             System.out.println(e.getMessage());
             if(e.getMessage().contains("Access denied"))
@@ -36,8 +47,8 @@ public class ConnectController implements IConnectController {
                 job.add("succes", "Cannot connect to targetdatabase");
 
         }
-        if(targetDatabaseService.getTargetDatabaseByHost(host, databaseName) != null)
-            job.add("succes", "true");
+        //if(targetDatabaseService.getTargetDatabaseByHost(host, databaseName) != null)
+        job.add("succes",result);
         return job.build().toString();
     }
 

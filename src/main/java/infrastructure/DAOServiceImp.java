@@ -17,4 +17,10 @@ public class DAOServiceImp implements IDAOService{
         TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, username, password,host,port, databaseName);
         return targetDatabaseDAO.executeScript(triggerCode);
     }
+
+    @Override
+    public boolean checkConnection(String type, String host, int port, String databaseName, String username, String password) {
+        TargetDatabaseDAO targetDatabaseDAO = new TargetDatabaseDAO(type, username, password,host,port, databaseName);
+        return targetDatabaseDAO.checkConnection();
+    }
 }

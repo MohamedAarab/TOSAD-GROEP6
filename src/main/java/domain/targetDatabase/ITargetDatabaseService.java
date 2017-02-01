@@ -18,4 +18,5 @@ public interface ITargetDatabaseService {
     String executeScript(String host, String databaseName, String triggerCode);
     SyntaxManager.DataType getDatabaseTypeFromAttribute(String host, String databaseName, String schemeName, String tableName, String attributeName);
     int removeTargetDatabase(String host, String databaseName);
+    boolean checkConnection(String type, String host, int port, String databaseName, String username, String password);
 }

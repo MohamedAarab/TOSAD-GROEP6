@@ -93,4 +93,15 @@ public class TargetDatabaseDAO extends BaseDAO {
         }
         return result;
     }
+
+    public boolean checkConnection(){
+        boolean result = false;
+        try(Connection connection = super.getConnection()){
+            result = true;
+        } catch (SQLException e) {
+            result = false;
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
