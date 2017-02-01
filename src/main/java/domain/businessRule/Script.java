@@ -43,7 +43,9 @@ public class Script {
                     StringTemplate toDate = SyntaxManager.getInstance().getToDateTemplate(scriptType);
                     toDate.setAttribute("date", formatter.format(definition.getValue()));
                     listValue += toDate.toString();
-                } else
+                } else if (definition.getValue() instanceof Integer)
+                    listValue += definition.getValue() ;
+                else
                     listValue += "'" + definition.getValue() + "'";
                 listValue += ", ";
             }
@@ -57,8 +59,7 @@ public class Script {
                     toDate.setAttribute("date", formatter.format(definition.getValue()));
                     constraintTemplate.setAttribute(definition.getName(), toDate.toString());
                 } else
-
-                constraintTemplate.setAttribute(definition.getName(), definition.getValue().toString());
+                    constraintTemplate.setAttribute(definition.getName(), definition.getValue().toString());
             }
         }
         constraintTemplate.setAttribute("operator", businessRule.getOperator().getOperator());

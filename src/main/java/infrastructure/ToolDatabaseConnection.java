@@ -82,7 +82,7 @@ public class ToolDatabaseConnection {
             Object stringObject = (((JsonObject) jay.get(i)).get("string_value"));
             Object dateObject = (((JsonObject) jay.get(i)).get("date_value"));
             if(numObject != null)
-                definition.setValue(Double.parseDouble(numObject.toString()));
+                definition.setValue(Integer.parseInt(numObject.toString()));
             else if (stringObject != null) {
                 String st = stringObject.toString().substring(1, stringObject.toString().length() -1);
                 definition.setValue(st.toString());
