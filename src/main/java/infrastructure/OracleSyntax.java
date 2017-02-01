@@ -13,9 +13,10 @@ public class OracleSyntax implements IDatabaseSyntax {
 
     public OracleSyntax(){
         constraintTemplates = new HashMap<String, StringTemplate>();
-        constraintTemplates.put("CompareRule", new StringTemplate("$firstAttribute$ $operator$ $comparevalue$;"));
-        constraintTemplates.put("AttributeListRule", new StringTemplate("$firstAttribute$ $operator$ $listValue$;"));
-        constraintTemplates.put("AttributeRangeRule", new StringTemplate("$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
+        constraintTemplates.put("AttributeCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ $comparevalue$;"));
+        constraintTemplates.put("TupleCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ :new.$secondAttribute$;"));
+        constraintTemplates.put("AttributeListRule", new StringTemplate(":new.$firstAttribute$ $operator$ $listValue$;"));
+        constraintTemplates.put("AttributeRangeRule", new StringTemplate(":new.$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
     }
 
     @Override
@@ -31,9 +32,6 @@ public class OracleSyntax implements IDatabaseSyntax {
                 "   if l_passed = false then \n "+
                 "      raise_application_error(-20000, \'$error_message$\'); \n"+
                 "   end if; \n"+
-                "EXCEPTION \n"+
-                "   WHEN others \n"+
-                "   -- exception handling \n"+
                 "END;");
     }
 
