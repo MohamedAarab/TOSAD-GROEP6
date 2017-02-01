@@ -63,6 +63,11 @@ public class MySQLSyntax implements IDatabaseSyntax {
     }
 
     @Override
+    public StringTemplate getToDateTemplate() {
+        return new StringTemplate("STR_TO_DATE('$date$', '%d-%m-%Y')");
+    }
+
+    @Override
     public String getSchemes() {
         return "show schemas";
     }

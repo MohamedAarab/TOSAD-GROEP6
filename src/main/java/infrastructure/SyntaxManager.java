@@ -80,4 +80,8 @@ public class SyntaxManager {
     public String getDriverPath(String syntaxType){
         return syntaxMap.get(syntaxType).getDriverPath();
     }
+
+    public StringTemplate getToDateTemplate(String syntaxType){
+        return syntaxMap.get(syntaxType).getToDateTemplate();
+    }
 }

@@ -78,4 +78,9 @@ public class OracleSyntax implements IDatabaseSyntax {
     public String getDriverPath() {
         return "oracle.jdbc.driver.OracleDriver";
     }
+
+    @Override
+    public StringTemplate getToDateTemplate() {
+        return new StringTemplate("TO_DATE('$date$', 'DD-MM-YYYY')");
+    }
 }

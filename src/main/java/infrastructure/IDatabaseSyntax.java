@@ -15,4 +15,5 @@ public interface IDatabaseSyntax {
     SyntaxManager.DataType getDataType(String dataTypeIN);
     String getJDBCUrl();
     String getDriverPath();
+    StringTemplate getToDateTemplate();
 }

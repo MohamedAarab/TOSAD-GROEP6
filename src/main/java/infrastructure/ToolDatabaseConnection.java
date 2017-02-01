@@ -87,9 +87,10 @@ public class ToolDatabaseConnection {
                 String st = stringObject.toString().substring(1, stringObject.toString().length() -1);
                 definition.setValue(st.toString());
             } else if(dateObject != null) {
-                DateFormat format = new SimpleDateFormat("DD-MM-YYYY", Locale.ENGLISH);
+                DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
                 try {
-                    definition.setValue(format.parse(dateObject.toString()));
+                    String st = dateObject.toString().substring(1, dateObject.toString().length() -1);
+                    definition.setValue(format.parse(st));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
