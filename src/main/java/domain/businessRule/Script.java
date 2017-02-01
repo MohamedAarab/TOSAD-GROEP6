@@ -27,7 +27,6 @@ public class Script {
     {
         StringTemplate triggerTemplate = SyntaxManager.getInstance().getTriggerTemplate(scriptType);
         StringTemplate constraintTemplate = SyntaxManager.getInstance().getConstraintTemplate(scriptType, businessRule.getBusinessRuleType().getName().replace(" ", ""));
-        System.out.println(scriptType + ", " + businessRule.getBusinessRuleType().getName().replace(" ", "") + ", " + constraintTemplate);
         triggerTemplate.setAttribute("trigger_name", name);
         String event = "";
         for(String s : triggerEvent){
@@ -63,7 +62,7 @@ public class Script {
                     String value = "";
                     if (businessRule.getBusinessRuleType().getName().equals("Tuple Compare Rule")){
                         value = definition.getValue().toString().split("\\.")[2];
-                    } else if(businessRule.getBusinessRuleType().getName().equals("Inter Entity Compare Rule")){
+                    } else if(businessRule.getBusinessRuleType().getName().equals("Inter-Entity Compare Rule")){
                         value = definition.getValue().toString().split("\\.")[1].toString() + "." + definition.getValue().toString().split("\\.")[2].toString();
                     }
                     constraintTemplate.setAttribute(definition.getName(), value);
