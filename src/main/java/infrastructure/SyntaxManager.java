@@ -59,7 +59,7 @@ public class SyntaxManager {
 
     public StringTemplate getConstraintTemplate(String syntaxType, String ruleType){
         System.out.println(ruleType);
-        if(ruleType.toLowerCase().equals("InterEntityCompareRule"))
+        if(ruleType.equals("Inter-EntityCompareRule"))
            ruleType = "TupleCompareRule";
         return syntaxMap.get(syntaxType).getConstraintTemplate(ruleType);
     }

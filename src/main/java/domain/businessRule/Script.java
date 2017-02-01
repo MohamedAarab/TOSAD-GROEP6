@@ -27,6 +27,7 @@ public class Script {
     {
         StringTemplate triggerTemplate = SyntaxManager.getInstance().getTriggerTemplate(scriptType);
         StringTemplate constraintTemplate = SyntaxManager.getInstance().getConstraintTemplate(scriptType, businessRule.getBusinessRuleType().getName().replace(" ", ""));
+        System.out.println(scriptType + ", " + businessRule.getBusinessRuleType().getName().replace(" ", "") + ", " + constraintTemplate);
         triggerTemplate.setAttribute("trigger_name", name);
         String event = "";
         for(String s : triggerEvent){
