@@ -17,21 +17,22 @@ public class OracleSyntax implements IDatabaseSyntax {
         constraintTemplates = new HashMap<String, StringTemplate>();
         constraintTemplates.put("AttributeCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ $comparevalue$;"));
         constraintTemplates.put("TupleCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ :new.$secondAttribute$;"));
+        constraintTemplates.put("Inter-EntityCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ (select $secondAttribute$ from $secondTable$ where $primaryKey$ = :new.$foreignKey$)"));
         constraintTemplates.put("AttributeListRule", new StringTemplate(":new.$firstAttribute$ $operator$ $listValue$;"));
         constraintTemplates.put("AttributeRangeRule", new StringTemplate(":new.$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
     }
 
     @Override
     public StringTemplate getTriggerTemplate() {
-        return new StringTemplate("CREATE OR REPLACE TRIGGER $trigger_name$\n" +
+        return new StringTemplate("CREATE OR REPLACE TRIGGER $trigger_name$ \n" +
                 "before $trigger_event$ \n" +
                 "   ON $table_name$ \n" +
                 "    FOR EACH ROW \n" +
                 "DECLARE \n" +
-                "   l_passed boolean := false; \n" +
+                "   l_passed varchar2(5); \n" +
                 "BEGIN \n" +
-                "   l_passed := $constraint$ \n" +
-                "   if l_passed = false then \n " +
+                "   select (CASE WHEN ($constraint$) THEN 'true' ELSE 'false' END) as result into l_passed from dual; \n" +
+                "   if l_passed = 'false' then \n " +
                 "      raise_application_error(-20000, \'$error_message$\'); \n" +
                 "   end if; \n" +
                 "END;");

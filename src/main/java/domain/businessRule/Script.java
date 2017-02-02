@@ -59,11 +59,11 @@ public class Script {
                     constraintTemplate.setAttribute(definition.getName(), toDate.toString());
                 } else if (definition.getName().equals("secondAttribute")) {
                     String value = "";
-                    if (businessRule.getBusinessRuleType().getName().equals("Tuple Compare Rule")) {
+                    //if (businessRule.getBusinessRuleType().getName().equals("Tuple Compare Rule")) {
                         value = definition.getValue().toString().split("\\.")[2];
-                    } else if (businessRule.getBusinessRuleType().getName().equals("Inter-Entity Compare Rule")) {
+                    /*} else if (businessRule.getBusinessRuleType().getName().equals("Inter-Entity Compare Rule")) {
                         value = definition.getValue().toString().split("\\.")[1].toString() + "." + definition.getValue().toString().split("\\.")[2].toString();
-                    }
+                    }*/
                     constraintTemplate.setAttribute(definition.getName(), value);
                 } else
                     constraintTemplate.setAttribute(definition.getName(), definition.getValue().toString());

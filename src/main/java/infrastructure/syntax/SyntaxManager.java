@@ -2,7 +2,7 @@ package infrastructure.syntax;
 
 import domain.businessRule.StringTemplate;
 import domain.targetDatabase.DataType;
-import infrastructure.tooldatabase.ToolDatabaseConnection;
+import infrastructure.tooldatabase.ToolDatabaseServiceImp;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +18,9 @@ public class SyntaxManager {
 
     public SyntaxManager() {
         try {
-            List<String> databaseTypes = new ToolDatabaseConnection().getAllDatabaseTypes();
+            List<String> databaseTypes = new ToolDatabaseServiceImp().getAllDatabaseTypes();
             for (String scriptType : databaseTypes) {
-                syntaxMap.put(scriptType, (IDatabaseSyntax) Class.forName("infrastructure." + scriptType + "Syntax").newInstance());
+                syntaxMap.put(scriptType, (IDatabaseSyntax) Class.forName("infrastructure.syntax." + scriptType + "Syntax").newInstance());
             }
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -55,8 +55,6 @@ public class SyntaxManager {
 
     public StringTemplate getConstraintTemplate(String syntaxType, String ruleType) {
         System.out.println(ruleType);
-        if (ruleType.equals("Inter-EntityCompareRule"))
-            ruleType = "TupleCompareRule";
         return syntaxMap.get(syntaxType).getConstraintTemplate(ruleType);
     }
 
