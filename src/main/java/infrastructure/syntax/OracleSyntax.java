@@ -15,11 +15,11 @@ public class OracleSyntax implements IDatabaseSyntax {
 
     public OracleSyntax() {
         constraintTemplates = new HashMap<String, StringTemplate>();
-        constraintTemplates.put("AttributeCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ $comparevalue$;"));
-        constraintTemplates.put("TupleCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ :new.$secondAttribute$;"));
+        constraintTemplates.put("AttributeCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ $comparevalue$"));
+        constraintTemplates.put("TupleCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ :new.$secondAttribute$"));
         constraintTemplates.put("Inter-EntityCompareRule", new StringTemplate(":new.$firstAttribute$ $operator$ (select $secondAttribute$ from $secondTable$ where $primaryKey$ = :new.$foreignKey$)"));
-        constraintTemplates.put("AttributeListRule", new StringTemplate(":new.$firstAttribute$ $operator$ $listValue$;"));
-        constraintTemplates.put("AttributeRangeRule", new StringTemplate(":new.$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
+        constraintTemplates.put("AttributeListRule", new StringTemplate(":new.$firstAttribute$ $operator$ $listValue$"));
+        constraintTemplates.put("AttributeRangeRule", new StringTemplate(":new.$firstAttribute$ $operator$ $minimum$ and $maximum$"));
     }
 
     @Override
