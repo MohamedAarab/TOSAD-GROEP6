@@ -1,7 +1,8 @@
-package infrastructure;
+package infrastructure.syntax;
 
 import domain.businessRule.StringTemplate;
 import domain.targetDatabase.DataType;
+import infrastructure.tooldatabase.ToolDatabaseConnection;
 
 import java.util.HashMap;
 import java.util.List;

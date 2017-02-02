@@ -1,4 +1,4 @@
-package infrastructure;
+package infrastructure.dao;
 
 import domain.targetDatabase.TargetDatabase;
 

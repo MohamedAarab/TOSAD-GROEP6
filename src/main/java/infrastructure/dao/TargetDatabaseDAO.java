@@ -1,10 +1,11 @@
-package infrastructure;
+package infrastructure.dao;
 
 import domain.businessRule.StringTemplate;
 import domain.targetDatabase.Attribute;
 import domain.targetDatabase.Scheme;
 import domain.targetDatabase.Table;
 import domain.targetDatabase.TargetDatabase;
+import infrastructure.syntax.SyntaxManager;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

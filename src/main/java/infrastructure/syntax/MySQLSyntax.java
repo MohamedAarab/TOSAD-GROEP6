@@ -1,4 +1,4 @@
-package infrastructure;
+package infrastructure.syntax;
 
 
 import domain.businessRule.StringTemplate;

@@ -1,7 +1,7 @@
 package domain.targetDatabase;
 
-import infrastructure.DAOServiceImp;
-import infrastructure.IDAOService;
+import infrastructure.dao.DAOServiceImp;
+import infrastructure.dao.IDAOService;
 
 import java.util.ArrayList;
 import java.util.List;

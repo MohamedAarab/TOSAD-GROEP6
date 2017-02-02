@@ -1,6 +1,6 @@
 package domain.businessRule;
 
-import infrastructure.SyntaxManager;
+import infrastructure.syntax.SyntaxManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

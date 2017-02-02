@@ -1,4 +1,6 @@
-package infrastructure;
+package infrastructure.dao;
+
+import infrastructure.syntax.SyntaxManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

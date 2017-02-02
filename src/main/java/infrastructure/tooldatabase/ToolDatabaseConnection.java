@@ -1,4 +1,4 @@
-package infrastructure;
+package infrastructure.tooldatabase;
 
 import domain.businessRule.BusinessRule;
 import domain.businessRule.Definition;

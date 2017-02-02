@@ -1,7 +1,7 @@
 package domain.businessRule;
 
-import infrastructure.IToolDatabaseService;
-import infrastructure.ToolDatabaseServiceImp;
+import infrastructure.tooldatabase.IToolDatabaseService;
+import infrastructure.tooldatabase.ToolDatabaseServiceImp;
 
 import java.util.List;
 
