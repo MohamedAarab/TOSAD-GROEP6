@@ -1,6 +1,8 @@
 package domain.businessRule;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,24 +15,24 @@ public class StringTemplate {
     // identifier(between dollar signs at start, value)
     private String template;
 
-    public StringTemplate(String template){
+    public StringTemplate(String template) {
         this.template = template;
         getAllAttributes();
     }
 
-    public Set<String> getAllAttributes(){
-        if(attributeMap == null) {
+    public Set<String> getAllAttributes() {
+        if (attributeMap == null) {
             attributeMap = new HashMap<String, String>();
             Pattern pattern = Pattern.compile("\\$(.*?)\\$");
             Matcher matcher = pattern.matcher(template);
             while (matcher.find()) {
-                attributeMap.put(matcher.group(1),matcher.group(1));
+                attributeMap.put(matcher.group(1), matcher.group(1));
             }
         }
         return attributeMap.keySet();
     }
 
-    public void setAttribute(String name, String value){
+    public void setAttribute(String name, String value) {
         attributeMap.put(name, value);
     }
 
@@ -38,7 +40,7 @@ public class StringTemplate {
     public String toString() {
         String string = "" + template;
         string = string.replaceAll("\\$", "");
-        for(String attribute : attributeMap.keySet()){
+        for (String attribute : attributeMap.keySet()) {
             string = string.replace(attribute, attributeMap.get(attribute));
         }
         return string;

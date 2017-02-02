@@ -10,23 +10,23 @@ public class Scheme {
     private String name;
     private List<Table> tables;
 
-    public Scheme(String name){
+    public Scheme(String name) {
         this.name = name;
         this.tables = new ArrayList<Table>();
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public List<Table> getTables(){
+    public List<Table> getTables() {
         return tables;
     }
 
-    public Table getTableByName(String tableName){
+    public Table getTableByName(String tableName) {
         Table table = null;
-        for(Table t : tables){
-            if(t.getName().equals(tableName)){
+        for (Table t : tables) {
+            if (t.getName().equals(tableName)) {
                 table = t;
                 break;
             }
@@ -34,20 +34,20 @@ public class Scheme {
         return table;
     }
 
-    public void addTable(Table table){
+    public void addTable(Table table) {
         tables.add(table);
     }
 
     @Override
     public String toString() {
         String returnString = "Scheme : " + name + ", Tables : [";
-        for(int i = 0; i<tables.size();i++){
+        for (int i = 0; i < tables.size(); i++) {
             returnString += "\n" + tables.get(i).toString();
-            if(i != tables.size() - 1)
+            if (i != tables.size() - 1)
                 returnString += " ,";
         }
-        if(tables.size() > 0)
-            returnString = returnString.substring(0,returnString.length());
+        if (tables.size() > 0)
+            returnString = returnString.substring(0, returnString.length());
         returnString += "\n]";
         return returnString;
     }

@@ -5,8 +5,10 @@ import domain.targetDatabase.TargetDatabaseServiceImp;
 
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 /**
  * Created by lucas on 27-1-2017.

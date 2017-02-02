@@ -7,12 +7,12 @@ public class Operator {
     public String name;
     private String operator;
 
-    public Operator(String name, String operator){
+    public Operator(String name, String operator) {
         this.name = name;
         this.operator = operator;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 

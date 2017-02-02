@@ -1,9 +1,8 @@
 package task;
 
-import domain.businessRule.StringTemplate;
-import domain.targetDatabase.*;
-
-import java.util.*;
+import domain.targetDatabase.ITargetDatabaseService;
+import domain.targetDatabase.Scheme;
+import domain.targetDatabase.TargetDatabaseServiceImp;
 
 public class Main {
 
@@ -22,13 +21,13 @@ public class Main {
         targetDatabaseService.connectToDatabase("MySQL", host, "advertmedi_tos","advertmedi_tos", "07yomnM4");*/
         String host = "mysql4.gear.host";
         targetDatabaseService.connectToDatabase("MySQL", host, 3306, "test67", "admin12", "admin12!");
-        for(Scheme s : targetDatabaseService.getAllSchemes(host, "test67")){
+        for (Scheme s : targetDatabaseService.getAllSchemes(host, "test67")) {
             System.out.println(s.toString());
         }
         System.out.println("Duration: " + (System.currentTimeMillis() - start));
         GenerateController generateController = new GenerateController();
-        String code = generateController.generateCode("med_id_br","update", "MySQL", "name");
-        code = code.substring(9,code.length()-2);
+        String code = generateController.generateCode("med_id_br", "update", "MySQL", "name");
+        code = code.substring(9, code.length() - 2);
         ExecuteController executeController = new ExecuteController();
         System.out.println(executeController.executeScript(host, "test67", code));
     }

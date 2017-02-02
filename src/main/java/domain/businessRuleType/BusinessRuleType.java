@@ -1,6 +1,5 @@
 package domain.businessRuleType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class BusinessRuleType {
         this.description = description;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
@@ -26,7 +25,7 @@ public class BusinessRuleType {
         return operators;
     }
 
-    public void setOperators(List<Operator> operators){
+    public void setOperators(List<Operator> operators) {
         this.operators = operators;
     }
 

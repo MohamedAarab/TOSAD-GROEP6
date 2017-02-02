@@ -7,6 +7,8 @@ import domain.targetDatabase.TargetDatabase;
  */
 public interface IDAOService {
     TargetDatabase connectToDatabase(String type, String host, int port, String databaseName, String username, String password);
+
     String executeScript(String type, String host, int port, String databaseName, String username, String password, String triggerCode);
+
     boolean checkConnection(String type, String host, int port, String databaseName, String username, String password);
 }

@@ -1,11 +1,7 @@
 package infrastructure;
 
-import javax.naming.InitialContext;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
-
-import com.mysql.jdbc.Driver;
 
 /**
  * Created by Gebruiker on 18-1-2017.
@@ -32,7 +28,7 @@ public class BaseDAO {
         Connection result = null;
         try {
             Class.forName(syntaxManager.getDriverPath(databaseType));
-            result = DriverManager.getConnection(syntaxManager.getJDBCUrl(databaseType)+this.targetUrl +":" + this.port + "/" + this.databaseName , this.targetUsername, this.targetPassword);
+            result = DriverManager.getConnection(syntaxManager.getJDBCUrl(databaseType) + this.targetUrl + ":" + this.port + "/" + this.databaseName, this.targetUsername, this.targetPassword);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }

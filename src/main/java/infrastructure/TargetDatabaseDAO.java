@@ -1,12 +1,15 @@
 package infrastructure;
 
+import domain.businessRule.StringTemplate;
 import domain.targetDatabase.Attribute;
 import domain.targetDatabase.Scheme;
 import domain.targetDatabase.Table;
 import domain.targetDatabase.TargetDatabase;
-import domain.businessRule.StringTemplate;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +23,13 @@ public class TargetDatabaseDAO extends BaseDAO {
         super(databaseType, targetUsername, targetPassword, targetUrl, databaseName, port);
     }
 
-    public TargetDatabase createTargetDatabase(){
+    public TargetDatabase createTargetDatabase() {
         TargetDatabase targetDatabase = new TargetDatabase(getDatabaseType(), getTargetUrl(), getPort(), getDatabaseName(), getTargetUsername(), getTargetPassword());
-        for(Scheme scheme : getSchemes()){
+        for (Scheme scheme : getSchemes()) {
             targetDatabase.addScheme(scheme);
-            for(Table table : getTables(scheme.getName())){
+            for (Table table : getTables(scheme.getName())) {
                 scheme.addTable(table);
-                for(Attribute attribute : getAttributes(scheme.getName(), table.getName())){
+                for (Attribute attribute : getAttributes(scheme.getName(), table.getName())) {
                     table.addAttribute(attribute);
                 }
             }
@@ -34,12 +37,12 @@ public class TargetDatabaseDAO extends BaseDAO {
         return targetDatabase;
     }
 
-    public List<Scheme> getSchemes(){
+    public List<Scheme> getSchemes() {
         List<Scheme> schemes = new ArrayList<Scheme>();
-        try(Connection conn = super.getConnection()){
+        try (Connection conn = super.getConnection()) {
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(syntaxManager.getSchemesTemplate(getDatabaseType()));
-            while(result.next()){
+            while (result.next()) {
                 schemes.add(new Scheme(result.getString(1)));
             }
         } catch (SQLException e) {
@@ -48,14 +51,14 @@ public class TargetDatabaseDAO extends BaseDAO {
         return schemes;
     }
 
-    public List<Table> getTables(String schemeName){
+    public List<Table> getTables(String schemeName) {
         List<Table> tables = new ArrayList<Table>();
-        try(Connection connection = super.getConnection()){
+        try (Connection connection = super.getConnection()) {
             Statement stmt = connection.createStatement();
             StringTemplate query = syntaxManager.getTablesTemplate(getDatabaseType());
             query.setAttribute("schemeName", schemeName);
             ResultSet resultSet = stmt.executeQuery(query.toString());
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 tables.add(new Table(resultSet.getString(1)));
             }
         } catch (SQLException e) {
@@ -64,16 +67,16 @@ public class TargetDatabaseDAO extends BaseDAO {
         return tables;
     }
 
-    public List<Attribute> getAttributes(String schemeName, String tableName){
+    public List<Attribute> getAttributes(String schemeName, String tableName) {
         List<Attribute> attributes = new ArrayList<Attribute>();
-        try(Connection connection = super.getConnection()){
+        try (Connection connection = super.getConnection()) {
             Statement stmt = connection.createStatement();
             StringTemplate query = syntaxManager.getAttributesTemplate(getDatabaseType());
             query.setAttribute("schemeName", schemeName);
             query.setAttribute("tableName", tableName);
             ResultSet resultSet = stmt.executeQuery(query.toString());
-            while (resultSet.next()){
-                attributes.add(new Attribute(resultSet.getString(1),syntaxManager.getDataType(getDatabaseType(),resultSet.getString(2))));
+            while (resultSet.next()) {
+                attributes.add(new Attribute(resultSet.getString(1), syntaxManager.getDataType(getDatabaseType(), resultSet.getString(2))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,10 +84,10 @@ public class TargetDatabaseDAO extends BaseDAO {
         return attributes;
     }
 
-    public String executeScript(String script){
+    public String executeScript(String script) {
         String result = null;
         System.out.println(script);
-        try(Connection connection = super.getConnection()){
+        try (Connection connection = super.getConnection()) {
             Statement stmt = connection.createStatement();
             stmt.execute(script);
             result = "succes";
@@ -94,9 +97,9 @@ public class TargetDatabaseDAO extends BaseDAO {
         return result;
     }
 
-    public boolean checkConnection(){
+    public boolean checkConnection() {
         boolean result = false;
-        try(Connection connection = super.getConnection()){
+        try (Connection connection = super.getConnection()) {
             result = true;
         } catch (SQLException e) {
             result = false;

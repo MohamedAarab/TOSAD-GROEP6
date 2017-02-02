@@ -1,11 +1,8 @@
 package domain.businessRule;
 
-import domain.businessRuleType.BusinessRuleType;
-import domain.businessRuleType.Operator;
 import infrastructure.IToolDatabaseService;
 import infrastructure.ToolDatabaseServiceImp;
 
-import javax.json.JsonObject;
 import java.util.List;
 
 /**
@@ -29,7 +26,7 @@ public class BusinessRuleServiceImp implements IBusinessRuleService {
     @Override
     public String generateCode(BusinessRule businessRule, List<String> eventList, String scriptType, String scriptName, String tableName) {
         businessRule.getName();
-        String code = new Script(scriptName, eventList,businessRule).generate(tableName, scriptType);
+        String code = new Script(scriptName, eventList, businessRule).generate(tableName, scriptType);
         return code;
     }
 

@@ -1,6 +1,7 @@
 package infrastructure;
 
 import domain.businessRule.StringTemplate;
+import domain.targetDatabase.DataType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,17 +15,11 @@ public class SyntaxManager {
     //        databasetype, syntax
     private static SyntaxManager syntaxManager;
 
-    public enum DataType{
-        text,
-        numeric,
-        date
-    }
-
-    public SyntaxManager(){
+    public SyntaxManager() {
         try {
             List<String> databaseTypes = new ToolDatabaseConnection().getAllDatabaseTypes();
-            for(String scriptType : databaseTypes){
-                syntaxMap.put(scriptType, (IDatabaseSyntax)Class.forName("infrastructure."+ scriptType + "Syntax").newInstance());
+            for (String scriptType : databaseTypes) {
+                syntaxMap.put(scriptType, (IDatabaseSyntax) Class.forName("infrastructure." + scriptType + "Syntax").newInstance());
             }
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -35,8 +30,8 @@ public class SyntaxManager {
         }
     }
 
-    public static SyntaxManager getInstance(){
-        if(syntaxManager == null)
+    public static SyntaxManager getInstance() {
+        if (syntaxManager == null)
             syntaxManager = new SyntaxManager();
         return syntaxManager;
     }
@@ -57,26 +52,26 @@ public class SyntaxManager {
         return syntaxMap.get(type).getAttributes();
     }
 
-    public StringTemplate getConstraintTemplate(String syntaxType, String ruleType){
+    public StringTemplate getConstraintTemplate(String syntaxType, String ruleType) {
         System.out.println(ruleType);
-        if(ruleType.equals("Inter-EntityCompareRule"))
-           ruleType = "TupleCompareRule";
+        if (ruleType.equals("Inter-EntityCompareRule"))
+            ruleType = "TupleCompareRule";
         return syntaxMap.get(syntaxType).getConstraintTemplate(ruleType);
     }
 
-    public DataType getDataType(String syntaxType, String datatype){
+    public DataType getDataType(String syntaxType, String datatype) {
         return syntaxMap.get(syntaxType).getDataType(datatype);
     }
 
-    public String getJDBCUrl(String syntaxType){
+    public String getJDBCUrl(String syntaxType) {
         return syntaxMap.get(syntaxType).getJDBCUrl();
     }
 
-    public String getDriverPath(String syntaxType){
+    public String getDriverPath(String syntaxType) {
         return syntaxMap.get(syntaxType).getDriverPath();
     }
 
-    public StringTemplate getToDateTemplate(String syntaxType){
+    public StringTemplate getToDateTemplate(String syntaxType) {
         return syntaxMap.get(syntaxType).getToDateTemplate();
     }
 }

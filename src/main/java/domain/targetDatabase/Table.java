@@ -10,19 +10,19 @@ public class Table {
     private String name;
     private List<Attribute> attributes;
 
-    public Table(String name){
+    public Table(String name) {
         this.name = name;
         this.attributes = new ArrayList<Attribute>();
     }
 
-    public List<Attribute> getAttributes(){
+    public List<Attribute> getAttributes() {
         return attributes;
     }
 
-    public Attribute getAttributeByName(String name){
+    public Attribute getAttributeByName(String name) {
         Attribute attribute = null;
-        for(Attribute a : attributes){
-            if(a.getName().equals(name)){
+        for (Attribute a : attributes) {
+            if (a.getName().equals(name)) {
                 attribute = a;
                 break;
             }
@@ -30,21 +30,21 @@ public class Table {
         return attribute;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void addAttribute(Attribute attribute){
+    public void addAttribute(Attribute attribute) {
         attributes.add(attribute);
     }
 
     @Override
     public String toString() {
         String returnString = "Table : " + name + ", Attributes [";
-        for(Attribute attribute : attributes){
+        for (Attribute attribute : attributes) {
             returnString += attribute.toString() + " ,";
         }
-        returnString = returnString.substring(0,returnString.length()-1);
+        returnString = returnString.substring(0, returnString.length() - 1);
         returnString += "]";
         return returnString;
     }

@@ -22,28 +22,12 @@ public class BusinessRule {
         this(null);
     }
 
-    public BusinessRule(BusinessRuleType businessRuleType){
+    public BusinessRule(BusinessRuleType businessRuleType) {
         definitions = new ArrayList<Definition>();
         this.businessRuleType = businessRuleType;
     }
 
-    public void setOperator(Operator operator) {
-        this.operator = operator;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setFirstAttribute(Attribute firstAttribute) {
-        this.firstAttribute = firstAttribute;
-    }
-
-    public void addDefinition(Definition definition){
+    public void addDefinition(Definition definition) {
         this.definitions.add(definition);
     }
 
@@ -51,35 +35,51 @@ public class BusinessRule {
         return definitions;
     }
 
+    public void setDefinitions(List<Definition> definitions) {
+        this.definitions = definitions;
+    }
+
     public Operator getOperator() {
         return operator;
+    }
+
+    public void setOperator(Operator operator) {
+        this.operator = operator;
     }
 
     public BusinessRuleType getBusinessRuleType() {
         return businessRuleType;
     }
 
+    public void setBusinessRuleType(BusinessRuleType businessRuleType) {
+        this.businessRuleType = businessRuleType;
+    }
+
     public Attribute getFirstAttribute() {
         return firstAttribute;
+    }
+
+    public void setFirstAttribute(Attribute firstAttribute) {
+        this.firstAttribute = firstAttribute;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getErrorMessage() {
         return errorMessage;
     }
 
-    public void setBusinessRuleType(BusinessRuleType businessRuleType) {
-        this.businessRuleType = businessRuleType;
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
-    public void setDefinitions(List<Definition> definitions) {
-        this.definitions = definitions;
-    }
-
-    public void save(){
+    public void save() {
         // TODO: 13-1-2017
     }
 }

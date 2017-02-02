@@ -23,46 +23,45 @@ public class Script {
         this.businessRule = businessRule;
     }
 
-    public String generate(String tableName, String scriptType)
-    {
+    public String generate(String tableName, String scriptType) {
         StringTemplate triggerTemplate = SyntaxManager.getInstance().getTriggerTemplate(scriptType);
         StringTemplate constraintTemplate = SyntaxManager.getInstance().getConstraintTemplate(scriptType, businessRule.getBusinessRuleType().getName().replace(" ", ""));
         triggerTemplate.setAttribute("trigger_name", name);
         String event = "";
-        for(String s : triggerEvent){
+        for (String s : triggerEvent) {
             event += s + " or ";
         }
         event = event.substring(0, event.length() - 3);
         triggerTemplate.setAttribute("trigger_event", triggerEvent.get(0));
         triggerTemplate.setAttribute("table_name", tableName);
         triggerTemplate.setAttribute("error_message", businessRule.getErrorMessage());
-        if(constraintTemplate.getAllAttributes().contains("listValue")){
+        if (constraintTemplate.getAllAttributes().contains("listValue")) {
             String listValue = "(";
             for (Definition definition : businessRule.getDefinitions()) {
-                if(definition.getValue() instanceof Date) {
+                if (definition.getValue() instanceof Date) {
                     StringTemplate toDate = SyntaxManager.getInstance().getToDateTemplate(scriptType);
                     toDate.setAttribute("date", formatter.format(definition.getValue()));
                     listValue += toDate.toString();
                 } else if (definition.getValue() instanceof Integer)
-                    listValue += definition.getValue() ;
+                    listValue += definition.getValue();
                 else
                     listValue += "'" + definition.getValue() + "'";
                 listValue += ", ";
             }
-            listValue = listValue.substring(0, listValue.length() -2);
+            listValue = listValue.substring(0, listValue.length() - 2);
             listValue += ")";
             constraintTemplate.setAttribute("listValue", listValue);
         } else {
             for (Definition definition : businessRule.getDefinitions()) {
-                if(definition.getValue() instanceof Date){
+                if (definition.getValue() instanceof Date) {
                     StringTemplate toDate = SyntaxManager.getInstance().getToDateTemplate(scriptType);
                     toDate.setAttribute("date", formatter.format(definition.getValue()));
                     constraintTemplate.setAttribute(definition.getName(), toDate.toString());
-                } else if (definition.getName().equals("secondAttribute")){
+                } else if (definition.getName().equals("secondAttribute")) {
                     String value = "";
-                    if (businessRule.getBusinessRuleType().getName().equals("Tuple Compare Rule")){
+                    if (businessRule.getBusinessRuleType().getName().equals("Tuple Compare Rule")) {
                         value = definition.getValue().toString().split("\\.")[2];
-                    } else if(businessRule.getBusinessRuleType().getName().equals("Inter-Entity Compare Rule")){
+                    } else if (businessRule.getBusinessRuleType().getName().equals("Inter-Entity Compare Rule")) {
                         value = definition.getValue().toString().split("\\.")[1].toString() + "." + definition.getValue().toString().split("\\.")[2].toString();
                     }
                     constraintTemplate.setAttribute(definition.getName(), value);

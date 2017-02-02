@@ -11,7 +11,9 @@ import java.util.List;
  */
 public interface IDefineController {
     List<Scheme> getAllSchemes(String host);
+
     List<Table> getTablesFromScheme(String host, String schemeName);
+
     List<Attribute> getAttributesFromTable(String host, String schemeName, String tableName);
 
 }

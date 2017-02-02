@@ -25,7 +25,7 @@ public class TargetDatabase {
         this.schemes = new ArrayList<Scheme>();
     }
 
-    public List<Scheme> getSchemes(){
+    public List<Scheme> getSchemes() {
         return schemes;
     }
 
@@ -33,10 +33,10 @@ public class TargetDatabase {
         return host;
     }
 
-    public Scheme getSchemeByName(String schemeName){
+    public Scheme getSchemeByName(String schemeName) {
         Scheme scheme = null;
-        for(Scheme s : schemes){
-            if(s.getName().equals(schemeName)){
+        for (Scheme s : schemes) {
+            if (s.getName().equals(schemeName)) {
                 scheme = s;
                 break;
             }
@@ -44,7 +44,7 @@ public class TargetDatabase {
         return scheme;
     }
 
-    public void addScheme(Scheme scheme){
+    public void addScheme(Scheme scheme) {
         schemes.add(scheme);
     }
 

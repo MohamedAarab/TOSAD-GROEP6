@@ -1,24 +1,22 @@
 package domain.targetDatabase;
 
-import infrastructure.SyntaxManager;
-
 /**
  * Created by lucas on 13-1-2017.
  */
 public class Attribute {
     private String name;
-    private SyntaxManager.DataType type;
+    private DataType type;
 
     public Attribute(String name) {
         this.name = name;
     }
 
-    public Attribute(String name, SyntaxManager.DataType type) {
+    public Attribute(String name, DataType type) {
         this.name = name;
         this.type = type;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -27,7 +25,7 @@ public class Attribute {
         return "Attribute : " + name;
     }
 
-    public SyntaxManager.DataType getType() {
+    public DataType getType() {
         return type;
     }
 }

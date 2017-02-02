@@ -2,6 +2,7 @@ package infrastructure;
 
 
 import domain.businessRule.StringTemplate;
+import domain.targetDatabase.DataType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +11,9 @@ import java.util.Map;
  * Created by lucas on 25-1-2017.
  */
 public class MySQLSyntax implements IDatabaseSyntax {
-    private Map<String, StringTemplate> constraintTemplates ;
+    private Map<String, StringTemplate> constraintTemplates;
 
-    public MySQLSyntax(){
+    public MySQLSyntax() {
         constraintTemplates = new HashMap<String, StringTemplate>();
         constraintTemplates.put("AttributeCompareRule", new StringTemplate("new.$firstAttribute$ $operator$ $comparevalue$;"));
         constraintTemplates.put("TupleCompareRule", new StringTemplate("new.$firstAttribute$ $operator$ $secondAttribute$;"));
@@ -25,15 +26,15 @@ public class MySQLSyntax implements IDatabaseSyntax {
         return new StringTemplate(//"DELIMITER ** "+
                 //"DROP TRIGGER IF EXISTS $trigger_name$; ** " +
                 "CREATE TRIGGER $trigger_name$ \n" +
-                "before $trigger_event$ ON $table_name$ \n" +
-                "FOR EACH ROW \n" +
-                "BEGIN \n" +
-                "   DECLARE l_passed BOOLEAN DEFAULT FALSE; \n" +
-                "   set l_passed = $constraint$ \n" +
-                "   if l_passed = false then \n" +
-                "        signal sqlstate '45000' set message_text = '$error_message$'; \n" +
-                "   end if; " +
-                "END;");
+                        "before $trigger_event$ ON $table_name$ \n" +
+                        "FOR EACH ROW \n" +
+                        "BEGIN \n" +
+                        "   DECLARE l_passed BOOLEAN DEFAULT FALSE; \n" +
+                        "   set l_passed = $constraint$ \n" +
+                        "   if l_passed = false then \n" +
+                        "        signal sqlstate '45000' set message_text = '$error_message$'; \n" +
+                        "   end if; " +
+                        "END;");
     }
 
     @Override
@@ -42,13 +43,13 @@ public class MySQLSyntax implements IDatabaseSyntax {
     }
 
     @Override
-    public SyntaxManager.DataType getDataType(String dataTypeIN){
-        if(dataTypeIN.contains("int")){
-            return SyntaxManager.DataType.numeric;
-        } else if(dataTypeIN.contains("varchar")){
-            return SyntaxManager.DataType.text;
-        } else if(dataTypeIN.toLowerCase().contains("date")){
-            return SyntaxManager.DataType.date;
+    public DataType getDataType(String dataTypeIN) {
+        if (dataTypeIN.contains("int")) {
+            return DataType.numeric;
+        } else if (dataTypeIN.contains("varchar")) {
+            return DataType.text;
+        } else if (dataTypeIN.toLowerCase().contains("date")) {
+            return DataType.date;
         }
         return null;
     }
@@ -79,7 +80,7 @@ public class MySQLSyntax implements IDatabaseSyntax {
     }
 
     @Override
-    public StringTemplate getConstraintTemplate(String ruleType){
+    public StringTemplate getConstraintTemplate(String ruleType) {
         return constraintTemplates.get(ruleType);
     }
 }

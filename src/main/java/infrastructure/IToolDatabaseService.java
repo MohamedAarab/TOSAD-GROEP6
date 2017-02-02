@@ -12,9 +12,14 @@ import java.util.List;
  */
 public interface IToolDatabaseService {
     BusinessRule getBusinessRuleByName(String businessruleName);
+
     String getTableNameFromBusinessRule(String businessRuleName);
+
     List<String> getAllDatabaseTypes();
+
     public List<Definition> getDefinitions(String businessruleName);
+
     Operator getOperatorByName(String operatorName);
+
     BusinessRuleType getBusinessRuleTypeByCode(String code);
 }

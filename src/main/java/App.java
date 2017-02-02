@@ -6,12 +6,9 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         ResourceConfig config = new ResourceConfig();
         config.packages("task");
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
