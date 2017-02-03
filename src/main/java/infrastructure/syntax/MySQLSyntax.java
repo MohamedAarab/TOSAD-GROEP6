@@ -15,10 +15,11 @@ public class MySQLSyntax implements IDatabaseSyntax {
 
     public MySQLSyntax() {
         constraintTemplates = new HashMap<String, StringTemplate>();
-        constraintTemplates.put("AttributeCompareRule", new StringTemplate("new.$firstAttribute$ $operator$ $comparevalue$;"));
-        constraintTemplates.put("TupleCompareRule", new StringTemplate("new.$firstAttribute$ $operator$ $secondAttribute$;"));
-        constraintTemplates.put("AttributeListRule", new StringTemplate("new.$firstAttribute$ $operator$ $listValue$;"));
-        constraintTemplates.put("AttributeRangeRule", new StringTemplate("new.$firstAttribute$ $operator$ $minimum$ and $maximum$;"));
+        constraintTemplates.put("AttributeCompareRule", new StringTemplate("new.$firstAttribute$ $operator$ $comparevalue$"));
+        constraintTemplates.put("TupleCompareRule", new StringTemplate("new.$firstAttribute$ $operator$ new.$secondAttribute$"));
+        constraintTemplates.put("AttributeListRule", new StringTemplate("new.$firstAttribute$ $operator$ $listValue$"));
+        constraintTemplates.put("AttributeRangeRule", new StringTemplate("new.$firstAttribute$ $operator$ $minimum$ and $maximum$"));
+        constraintTemplates.put("Inter-EntityCompareRule", new StringTemplate("new.$firstAttribute$ $operator$ (select $secondAttribute$ from $secondTable$ where $primaryKey$ = new.$foreignKey$)"));
     }
 
     @Override
@@ -29,9 +30,9 @@ public class MySQLSyntax implements IDatabaseSyntax {
                         "before $trigger_event$ ON $table_name$ \n" +
                         "FOR EACH ROW \n" +
                         "BEGIN \n" +
-                        "   DECLARE l_passed BOOLEAN DEFAULT FALSE; \n" +
-                        "   set l_passed = $constraint$ \n" +
-                        "   if l_passed = false then \n" +
+                        "   DECLARE l_passed varchar(5) DEFAULT 'false'; \n" +
+                        "   select (CASE WHEN ($constraint$) THEN 'true' ELSE 'false' END) as result into l_passed; \n" +
+                        "   if l_passed = 'false' then \n" +
                         "        signal sqlstate '45000' set message_text = '$error_message$'; \n" +
                         "   end if; " +
                         "END;");
